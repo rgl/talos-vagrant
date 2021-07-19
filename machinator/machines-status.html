@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Machinator</title>
+<style>
+body {
+	font-family: monospace;
+	color: #555;
+	background: #e6edf4;
+	padding: 1.25rem;
+	margin: 0;
+}
+table {
+	background: #fff;
+	border: .0625rem solid #c4cdda;
+	border-radius: 0 0 .25rem .25rem;
+	border-spacing: 0;
+    margin-bottom: 1.25rem;
+	padding: .75rem 1.25rem;
+	text-align: left;
+	white-space: pre;
+}
+table > caption {
+	background: #f1f6fb;
+	text-align: left;
+	font-weight: bold;
+	padding: .75rem 1.25rem;
+	border: .0625rem solid #c4cdda;
+	border-radius: .25rem .25rem 0 0;
+	border-bottom: 0;
+}
+table td, table th {
+	padding: .25rem;
+}
+table > tbody > tr:hover {
+	background: #f1f6fb;
+}
+td.node-memory {
+	text-align: right;
+}
+</style>
+</head>
+<body>
+	<table>
+		<caption>Machines</caption>
+		<thead>
+			<tr>
+				<th>Talos Actions</th>
+				<th>Power Actions</th>
+				<th>Power State</th>
+				<th>Name</th>
+				<th>Ip</th>
+				<th>Mac</th>
+				<th>Mac Vendor</th>
+				<th>Client Id</th>
+				<th>Hostname</th>
+				<th>Expires At ({{.Location}})</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{- range .MachinesStatus}}
+			<tr data-machine-name="{{.Name}}">
+				<td><button data-action="talos-reboot" title="talosctl reboot">Reboot</button><button data-action="talos-reset" title="talosctl reset and poweroff">Reset</button></td>
+				{{- if .BmcType}}
+				<td><button data-action="bmc-reset-to-network-rescue-wipe" title="Wipe the disk and install Talos">Reinstall</button><button data-action="bmc-reset-to-network-rescue" title="Reset the machine to the Rescue live system">Rescue</button><button data-action="bmc-reset" title="Reset the machine">Reset</button></td>
+				<td>{{.PowerState}}</td>
+				{{- else}}
+				<td><button data-action="matchbox-network-rescue-wipe" title="Wipe the disk and install Talos (you must manually boot from network)">Reinstall</button><button data-action="matchbox-network-rescue" title="Network boot to the Rescue live system (you must manually boot from network)">Rescue</button></td>
+				<td></td>
+				{{- end}}
+				<td>{{.Name}}</td>
+				<td>{{.Ip}}</td>
+				<td>{{.Mac}}</td>
+				<td>{{.MacVendor}}</td>
+				<td>{{.ClientId}}</td>
+				<td>{{.Hostname}}</td>
+				<td>{{if not .ExpiresAt.IsZero}}{{.ExpiresAt}}{{end}}</td>
+			</tr>
+			{{- end}}
+		</tbody>
+	</table>
+	<table>
+		<caption>Kubernetes Nodes</caption>
+		<thead>
+			<tr>
+				<th class="node-name">Name</th>
+				<th class="node-status">Status</th>
+				<th class="node-roles">Roles</th>
+				<th class="node-version">Version</th>
+				<th class="node-internal-ip">Internal IP</th>
+				<th class="node-external-ip">External IP</th>
+				<th class="node-cpu">Cpu</th>
+				<th class="node-memory">Memory</th>
+				<th class="node-architecture">Architecture</th>
+				<th class="node-os-image">Os Image</th>
+				<th class="node-kernel-version">Kernel Version</th>
+				<th class="node-container-runtime">Container Runtime</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{- range .KubernetesNodes}}
+			<tr>
+				<td class="node-name">{{.Name}}</td>
+				<td class="node-status">{{.Status}}</td>
+				<td class="node-roles">{{.Roles}}</td>
+				<td class="node-version">{{.Version}}</td>
+				<td class="node-internal-ip">{{.InternalIp}}</td>
+				<td class="node-external-ip">{{.ExternalIp}}</td>
+				<td class="node-cpu">{{.Cpu}}</td>
+				<td class="node-memory">{{.Memory}}</td>
+				<td class="node-architecture">{{.Architecture}}</td>
+				<td class="node-os-image">{{.OsImage}}</td>
+				<td class="node-kernel-version">{{.KernelVersion}}</td>
+				<td class="node-container-runtime">{{.ContainerRuntime}}</td>
+			</tr>
+			{{- end}}
+		</tbody>
+	</table>
+	<script>
+		document.addEventListener("click", function(event) {
+			if (!("action" in event.target.dataset)) {
+				return;
+			}
+			event.stopPropagation();
+			event.preventDefault();
+			const action = event.target.dataset.action;
+			for (var node = event.target.parentNode; ; node = node.parentNode) {
+				if ("machineName" in node.dataset) {
+					var machineName = node.dataset.machineName;
+					fetch("/action", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							action: action,
+							machineName: machineName
+						})
+					})
+					.then(response => response.json())
+					.then(data => console.log("Action Result", data))
+					.catch((error) => {
+						console.error("Action Error:", error);
+					});
+					break;
+				}
+			}
+		});
+	</script>
+</body>
+</html>
