@@ -70,7 +70,7 @@ func redfishBmcResetToBootTarget(machine *Machine, bootTarget redfish.BootSource
 		if err != nil {
 			return err
 		}
-		log.Printf("Waiting for the system to the off...")
+		log.Printf("Waiting for the system to be off...")
 		for {
 			system, err = redfish.GetComputerSystem(c, system.ODataID)
 			if err == nil && system.PowerState == redfish.OffPowerState {
@@ -85,7 +85,7 @@ func redfishBmcResetToBootTarget(machine *Machine, bootTarget redfish.BootSource
 	if err != nil {
 		return err
 	}
-	log.Printf("Waiting for the system to the on...")
+	log.Printf("Waiting for the system to be on...")
 	for {
 		system, err = redfish.GetComputerSystem(c, system.ODataID)
 		if err == nil && system.PowerState == redfish.OnPowerState {
