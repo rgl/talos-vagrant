@@ -48,7 +48,7 @@ func kubectl(args ...string) (string, error) {
 		if exitError, ok := err.(*exec.ExitError); ok {
 			exitCode = exitError.ProcessState.ExitCode()
 		}
-		return "", &TalosExecError{
+		return "", &KubernetesExecError{
 			ExitCode: exitCode,
 			Stdout:   stdout.String(),
 			Stderr:   stderr.String(),
