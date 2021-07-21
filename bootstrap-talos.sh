@@ -40,6 +40,11 @@ kubectl get deployments --all-namespaces -o json | jq -r '.items[].metadata | [.
     kubectl -n "$ns" rollout status deployment "$deployment_name"
 done
 
+title 'Waiting for nodes to be ready'
+cat /vagrant/shared/machines.json | jq -r '.[] | select(.type == "virtual") | .name' | while read name; do
+    while [ -z "$(kubectl get node "$name" 2>/dev/null | grep -E '\s+Ready\s+')" ]; do sleep 3; done
+done
+
 title 'Reconfiguring the Kubernetes control plane endpoint DNS A RR to the VIP'
 sed -i -E 's/^(host-record=.+?),.+? # control_plane_vip=(.+)/\1,\2/g' /etc/dnsmasq.d/local.conf
 systemctl restart dnsmasq
