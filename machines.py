@@ -156,10 +156,14 @@ def get_machines(prefix='/vagrant'):
     for machine in machines:
         if machine['type'] != 'virtual':
             continue
-        machine['bmcType'] = 'redfish'
-        machine['bmcIp'] = str(host_ip_address)
-        machine['bmcPort'] = 8000 + machine['hostNumber']
-        machine['bmcQmpPort'] = 9000 + machine['hostNumber']
+        if 'bmcType' not in machine:
+            machine['bmcType'] = 'redfish'
+        if 'bmcIp' not in machine:
+            machine['bmcIp'] = str(host_ip_address)
+        if 'bmcPort' not in machine:
+            machine['bmcPort'] = 8000 + machine['hostNumber']
+        if 'bmcQmpPort' not in machine:
+            machine['bmcQmpPort'] = 9000 + machine['hostNumber']
 
     # populate the machines amt bmc ip address and port.
     for machine in machines:

@@ -4,7 +4,7 @@ def virtual_machines
   configure_virtual_machines
   machines = JSON.load(File.read('shared/machines.json')).select{|m| m['type'] == 'virtual'}
   machines.each_with_index.map do |m, i|
-    [m['name'], m['arch'], m['firmware'], m['ip'], m['mac'], m['bmcIp'], m['bmcPort'], m['bmcQmpPort']]
+    [m['name'], m['arch'], m['firmware'], m['ip'], m['mac'], m['bmcType'], m['bmcIp'], m['bmcPort'], m['bmcQmpPort']]
   end
 end
 
@@ -17,13 +17,26 @@ def configure_virtual_machines
   File.write('shared/machines.json', stdout)
 end
 
-def vbmc_container_name(machine)
-  "sushy-vbmc-emulator-#{File.basename(File.dirname(__FILE__))}_#{machine.name}"
+def vbmc_domain_name(machine)
+  "#{File.basename(File.dirname(__FILE__))}_#{machine.name}"
 end
 
-def vbmc_up(machine, bmc_ip, bmc_port)
-  vbmc_destroy(machine)
-  container_name = vbmc_container_name(machine)
+def vbmc_container_name(machine, bmc_type)
+  "vbmc-emulator-#{bmc_type}-#{vbmc_domain_name(machine)}"
+end
+
+def vbmc_up(machine, bmc_type, bmc_ip, bmc_port)
+  case bmc_type
+  when 'redfish'
+    vbmc_up_redfish(machine, bmc_type, bmc_ip, bmc_port)
+  when 'ipmi'
+    vbmc_up_ipmi(machine, bmc_type, bmc_ip, bmc_port)
+  end
+end
+
+def vbmc_up_redfish(machine, bmc_type, bmc_ip, bmc_port)
+  vbmc_destroy(machine, bmc_type)
+  container_name = vbmc_container_name(machine, bmc_type)
   machine.ui.info("Creating the #{container_name} docker container...")
   stdout, stderr, status = Open3.capture3(
     'docker',
@@ -49,8 +62,40 @@ def vbmc_up(machine, bmc_ip, bmc_port)
   end
 end
 
-def vbmc_destroy(machine)
-  container_name = vbmc_container_name(machine)
+def vbmc_up_ipmi(machine, bmc_type, bmc_ip, bmc_port)
+  vbmc_destroy(machine, bmc_type)
+  container_name = vbmc_container_name(machine, bmc_type)
+  machine.ui.info("Creating the #{container_name} docker container...")
+  stdout, stderr, status = Open3.capture3(
+    'docker',
+    'run',
+    '--rm',
+    '--name',
+    container_name,
+    '--detach',
+    '-v',
+    '/var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock',
+    '-v',
+    '/var/run/libvirt/libvirt-sock-ro:/var/run/libvirt/libvirt-sock-ro',
+    '-e',
+    "VBMC_EMULATOR_DOMAIN_NAME=#{vbmc_domain_name(machine)}",
+    '-e',
+    "VBMC_EMULATOR_USERNAME=admin",
+    '-e',
+    "VBMC_EMULATOR_PASSWORD=password",
+    '-p',
+    "#{bmc_ip}:#{bmc_port}:6230/udp",
+    'ruilopes/vbmc-emulator')
+  if status.exitstatus != 0
+    if stderr.include? 'No such container'
+      return
+    end
+    raise "failed to run the #{container_name} docker container. status=#{status.exitstatus} stdout=#{stdout} stderr=#{stderr}"
+  end
+end
+
+def vbmc_destroy(machine, bmc_type)
+  container_name = vbmc_container_name(machine, bmc_type)
   stdout, stderr, status = Open3.capture3('docker', 'inspect', container_name)
   if status.exitstatus != 0
     if stderr.include? 'No such object'

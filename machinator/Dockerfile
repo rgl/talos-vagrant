@@ -7,6 +7,7 @@ RUN CGO_ENABLED=0 go build -ldflags="-s"
 
 # NB we use the buster-slim (instead of scratch) image so we can enter the container to execute bash etc.
 FROM debian:buster-slim
+RUN apt-get update && apt-get install -y ipmitool && rm -rf /var/lib/apt/lists/*
 ADD --chmod=755 https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 # TODO remove the next line after https://github.com/moby/buildkit/pull/2171 lands in a docker release.
 RUN chmod 755 /usr/local/bin/kubectl

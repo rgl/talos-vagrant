@@ -21,5 +21,7 @@ docker run \
     -v /etc/localtime:/etc/localtime:ro \
     -e AMT_USERNAME='admin' \
     -e AMT_PASSWORD='HeyH0Password!' \
+    -e IPMI_USERNAME='admin' \
+    -e IPMI_PASSWORD='password' \
     -p 8000:8000 \
     machinator

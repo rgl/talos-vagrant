@@ -6,6 +6,8 @@ import (
 
 func bmcGetPowerState(machine *Machine) (string, error) {
 	switch machine.BmcType {
+	case "ipmi":
+		return ipmiBmcGetPowerState(machine)
 	case "redfish":
 		return redfishBmcGetPowerState(machine)
 	case "amt":
@@ -21,6 +23,8 @@ func bmcResetToNetwork(machine *Machine, os string) error {
 		return err
 	}
 	switch machine.BmcType {
+	case "ipmi":
+		return ipmiBmcResetToNetwork(machine)
 	case "redfish":
 		return redfishBmcResetToNetwork(machine)
 	case "amt":
@@ -32,6 +36,8 @@ func bmcResetToNetwork(machine *Machine, os string) error {
 
 func bmcResetToDisk(machine *Machine) error {
 	switch machine.BmcType {
+	case "ipmi":
+		return ipmiBmcResetToDisk(machine)
 	case "redfish":
 		return redfishBmcResetToDisk(machine)
 	case "amt":
@@ -43,6 +49,8 @@ func bmcResetToDisk(machine *Machine) error {
 
 func bmcReset(machine *Machine) error {
 	switch machine.BmcType {
+	case "ipmi":
+		return ipmiBmcReset(machine)
 	case "redfish":
 		return redfishBmcReset(machine)
 	case "amt":

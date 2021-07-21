@@ -60,7 +60,7 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-talos.sh', args: [CONFIG_TALOS_VERSION, CONFIG_KUBERNETES_VERSION, CONFIG_CONTROL_PLANE_VIP]
   end
 
-  virtual_machines.each do |name, arch, firmware, ip, mac, bmc_ip, bmc_port, bmc_qmp_port|
+  virtual_machines.each do |name, arch, firmware, ip, mac, bmc_type, bmc_ip, bmc_port, bmc_qmp_port|
     config.vm.define name do |config|
       config.vm.box = nil
       config.vm.provider :libvirt do |lv, config|
@@ -123,12 +123,12 @@ Vagrant.configure('2') do |config|
         config.vm.synced_folder '.', '/vagrant', disabled: true
         config.trigger.after :up do |trigger|
           trigger.ruby do |env, machine|
-            vbmc_up(machine, bmc_ip, bmc_port)
+            vbmc_up(machine, bmc_type, bmc_ip, bmc_port)
           end
         end
         config.trigger.after :destroy do |trigger|
           trigger.ruby do |env, machine|
-            vbmc_destroy(machine)
+            vbmc_destroy(machine, bmc_type)
           end
         end
       end
