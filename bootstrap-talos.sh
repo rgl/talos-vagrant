@@ -33,7 +33,12 @@ install -m 600 -o vagrant -g vagrant ~/.kube/config /home/vagrant/.kube/config
 cp ~/.kube/config /vagrant/shared/kubeconfig
 
 title 'Waiting for Kubernetes to be ready'
-while ! kubectl --namespace kube-system rollout status deployment coredns >/dev/null 2>&1; do sleep 3; done
+# wait for the api server to be ready.
+while ! kubectl get ns >/dev/null 2>&1; do sleep 3; done
+# wait for all the deployments to be rolled out.
+kubectl get deployments --all-namespaces -o json | jq -r '.items[].metadata | [.namespace,.name] | @tsv' | while read ns deployment_name; do
+    kubectl -n "$ns" rollout status deployment "$deployment_name"
+done
 
 title 'Reconfiguring the Kubernetes control plane endpoint DNS A RR to the VIP'
 sed -i -E 's/^(host-record=.+?),.+? # control_plane_vip=(.+)/\1,\2/g' /etc/dnsmasq.d/local.conf
