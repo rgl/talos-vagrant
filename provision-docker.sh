@@ -2,7 +2,7 @@
 source /vagrant/lib.sh
 
 
-docker_version='20.10.7'
+docker_version='20.10.8'
 
 
 # prevent apt-get et al from asking questions.
