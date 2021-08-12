@@ -6,7 +6,7 @@
   type: virtual
 
 - name: w1
-  role: join
+  role: worker
   arch: amd64
   firmware: bios
   hostNumber: 10
@@ -16,7 +16,7 @@
 #   /dev/mmcblk0 64 GB eMMC
 #   /dev/nvme0n1  1 TB NVMe
 - name: odyssey
-  role: join
+  role: worker
   arch: amd64
   mac: 00:e0:4c:01:93:a8
   hostNumber: 20
@@ -26,7 +26,7 @@
 # disk devices:
 #   /dev/sda 240 GB SATA SSD
 - name: desk-mini
-  role: join
+  role: worker
   arch: amd64
   bmcType: amt
   mac: ec:b1:d7:71:ff:f3
@@ -37,7 +37,7 @@
 #   /dev/mmcblk0 16 GB SD Card (with rpi4-uefi-ipxe)
 #   /dev/sda     64 GB USB Flash
 - name: rpi4-8gb
-  role: join
+  role: worker
   arch: arm64
   mac: dc:a6:32:b0:ba:1d
   hostNumber: 22

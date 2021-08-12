@@ -8,7 +8,7 @@ control_plane_vip="${1:-10.10.0.3}"; shift || true
 
 #
 # bootstrap etcd.
-# see https://www.talos.dev/docs/v0.11/bare-metal-platforms/matchbox/#bootstrap-etcd
+# see https://www.talos.dev/docs/v0.12/bare-metal-platforms/matchbox/#bootstrap-etcd
 
 control_plane_ips="$(cat /vagrant/shared/machines.json | jq -r '.[] | select(.role == "controlplane") | .ip')"
 first_control_plane_ip="$(echo "$control_plane_ips" | head -1)"

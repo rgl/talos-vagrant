@@ -3,8 +3,8 @@ source /vagrant/lib.sh
 
 
 dns_domain="$(hostname --domain)"
-talos_version="${1:-0.11.2}"; shift || true
-kubernetes_version="${1:-1.21.3}"; shift || true
+talos_version="${1:-0.12.0-alpha.0}"; shift || true
+kubernetes_version="${1:-1.22.0}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 
 
@@ -28,9 +28,9 @@ talosctl version --client
 
 #
 # install talos.
-# see https://www.talos.dev/docs/v0.11/bare-metal-platforms/matchbox/
-# see https://www.talos.dev/docs/v0.11/guides/vip/
-# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/talos-systems/kubelet:v1.21.3
+# see https://www.talos.dev/docs/v0.12/bare-metal-platforms/matchbox/
+# see https://www.talos.dev/docs/v0.12/guides/vip/
+# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/talos-systems/kubelet:v1.22.0
 #    execute `talosctl images` to show the defaults.
 # NB this generates yaml file that will be interpreted by matchbox as Go
 #    templates. this means we can use matchbox metadata variables like
@@ -86,9 +86,9 @@ talosctl gen config \
     --with-docs=false \
     --with-examples=false
 talosctl validate --config controlplane.yaml --mode metal
-talosctl validate --config join.yaml --mode metal
+talosctl validate --config worker.yaml --mode metal
 install -m 644 controlplane.yaml /var/lib/matchbox/generic
-install -m 644 join.yaml /var/lib/matchbox/generic
+install -m 644 worker.yaml /var/lib/matchbox/generic
 install -d -m 700 ~/.talos
 install -m 600 talosconfig ~/.talos/config
 popd

@@ -24,7 +24,7 @@ def get_matchbox_profiles():
         'assets/vmlinuz-arm64',
         'assets/initramfs-arm64.xz',
         'generic/controlplane.yaml',
-        'generic/join.yaml',
+        'generic/worker.yaml',
     ]
     for required_file in required_files:
         if not os.path.exists(f'/var/lib/matchbox/{required_file}'):
@@ -55,9 +55,9 @@ def get_matchbox_profiles():
             }
         }
         yield {
-            "id": f"join-{arch}",
-            "name": f"join-{arch}",
-            "generic_id": "join.yaml",
+            "id": f"worker-{arch}",
+            "name": f"worker-{arch}",
+            "generic_id": "worker.yaml",
             "boot": {
                 "kernel": f"/assets/vmlinuz-{arch}",
                 "initrd": [f"/assets/initramfs-{arch}.xz"],

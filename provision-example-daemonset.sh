@@ -4,8 +4,8 @@ source /vagrant/lib.sh
 kubectl apply -f - <<'EOF'
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#serviceport-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#service-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#serviceport-v1-core
 apiVersion: v1
 kind: Service
 metadata:
@@ -22,9 +22,9 @@ spec:
       targetPort: http
 ---
 # see https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#daemonset-v1-apps
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podtemplatespec-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#container-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#daemonset-v1-apps
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#podtemplatespec-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#container-v1-core
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
