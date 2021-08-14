@@ -24,6 +24,20 @@ Bring up the cluster virtual machines:
 time ./bring-up.sh
 ```
 
+Access talos:
+
+```bash
+export TALOSCONFIG="$PWD/shared/talosconfig"
+./shared/talosctl --nodes cp1,w1 version
+```
+
+Access kubernetes:
+
+```bash
+export KUBECONFIG="$PWD/shared/kubeconfig"
+./shared/kubectl get nodes -o wide
+```
+
 Start an example service in each worker node:
 
 ```bash

@@ -3,7 +3,7 @@ source /vagrant/lib.sh
 
 
 dns_domain="$(hostname --domain)"
-control_plane_vip="${1:-10.10.0.3}"; shift || true
+control_plane_fqdn="cp.$dns_domain"
 
 
 #
@@ -30,7 +30,6 @@ title 'Downloading Kubernetes config to ~/.kube/config'
 talosctl kubeconfig
 install -d -m 700 -o vagrant -g vagrant /home/vagrant/.kube
 install -m 600 -o vagrant -g vagrant ~/.kube/config /home/vagrant/.kube/config
-cp ~/.kube/config /vagrant/shared/kubeconfig
 
 title 'Waiting for Kubernetes to be ready'
 # wait for the api server to be ready.
@@ -48,7 +47,7 @@ done
 title 'Reconfiguring the Kubernetes control plane endpoint DNS A RR to the VIP'
 sed -i -E 's/^(host-record=.+?),.+? # control_plane_vip=(.+)/\1,\2/g' /etc/dnsmasq.d/local.conf
 systemctl restart dnsmasq
-dig "cp.$dns_domain"
+dig $control_plane_fqdn
 
 title 'Adding all the control plane endpoints to the talosctl local configuration'
 talosctl config endpoints $control_plane_ips
@@ -56,6 +55,10 @@ talosctl config nodes # NB this makes sure there are no default nodes.
 install -d -m 700 -o vagrant -g vagrant /home/vagrant/.talos
 install -m 600 -o vagrant -g vagrant ~/.talos/config /home/vagrant/.talos/config
 cp ~/.talos/config /vagrant/shared/talosconfig
+
+title 'Copying Kubernetes config to the host'
+control_plane_vip="$(dig +short $control_plane_fqdn)"
+sed "s,$control_plane_fqdn,$control_plane_vip,g" ~/.kube/config >/vagrant/shared/kubeconfig
 
 
 #
