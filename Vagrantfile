@@ -1,5 +1,5 @@
 CONFIG_DNS_DOMAIN = 'talos.test'
-CONFIG_TALOS_VERSION = '0.12.0-alpha.1' # see https://github.com/talos-systems/talos/releases
+CONFIG_TALOS_VERSION = '0.12.0-beta.2' # see https://github.com/talos-systems/talos/releases
 CONFIG_KUBERNETES_VERSION = '1.22.0'
 CONFIG_PANDORA_BRIDGE_NAME = nil
 CONFIG_PANDORA_HOST_IP = '10.10.0.1'
