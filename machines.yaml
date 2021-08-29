@@ -1,7 +1,7 @@
 - name: cp1
   role: controlplane
   arch: amd64
-  firmware: bios
+  firmware: uefi
   bmcType: ipmi
   hostNumber: 0
   type: virtual
