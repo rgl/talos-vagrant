@@ -2,6 +2,7 @@
   role: controlplane
   arch: amd64
   firmware: bios
+  bmcType: ipmi
   hostNumber: 0
   type: virtual
 
@@ -9,6 +10,7 @@
   role: worker
   arch: amd64
   firmware: bios
+  bmcType: ipmi
   hostNumber: 10
   type: virtual
 
