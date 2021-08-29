@@ -118,9 +118,11 @@ This was tested on the following physical machines and boot modes:
   * `talosctl -n cp1 list -l /sys/fs/cgroup`
   * `talosctl -n cp1 read /proc/cmdline | tr ' ' '\n'`
   * `talosctl -n cp1 read /proc/mounts | sort`
+  * `talosctl -n cp1 read /etc/resolv.conf`
 * Kubernetes
   * `kubectl get events --all-namespaces --watch`
   * `kubectl --namespace kube-system get events --watch`
+  * `kubectl run -it --rm --restart=Never busybox --image=busybox:1.33 -- nslookup -type=a pandora.talos.test`
 
 # Alternatives and Related Projects
 

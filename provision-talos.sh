@@ -75,10 +75,13 @@ cat >config-patch-controlplane.json <<EOF
     }
 ]
 EOF
+# NB CoreDNS will be authoritative dns server for the given dns-domain zone.
+#    it will not forward that zone unknown queries to the upstream dns server.
+#    it will only fallthrough the in-addr.arpa and ip6.arpa zones.
 talosctl gen config \
     talos \
     "https://cp.$dns_domain:6443" \
-    --dns-domain "$dns_domain" \
+    --dns-domain cluster.local \
     --kubernetes-version "$kubernetes_version" \
     --install-disk '{{.installDisk}}' \
     --config-patch "$(cat config-patch.json)" \

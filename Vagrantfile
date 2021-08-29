@@ -1,3 +1,5 @@
+# set the external dns zone used for ssh into the machines and ingress.
+# NB the cluster dns zone must be different than this zone.
 CONFIG_DNS_DOMAIN = 'talos.test'
 CONFIG_TALOS_VERSION = '0.12.0-beta.2' # see https://github.com/talos-systems/talos/releases
 CONFIG_KUBERNETES_VERSION = '1.22.0'
