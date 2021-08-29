@@ -187,6 +187,8 @@ func GetDhcpLeases(filePath string) ([]DhcpLease, error) {
 
 func executeMachineAction(machine *Machine, action string) error {
 	switch action {
+	case "talos-shutdown":
+		return talosShutdown(machine)
 	case "talos-reboot":
 		return talosReboot(machine)
 	case "talos-reset":

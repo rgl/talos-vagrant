@@ -60,7 +60,7 @@ td.node-memory {
 		<tbody>
 			{{- range .MachinesStatus}}
 			<tr data-machine-name="{{.Name}}">
-				<td><button data-action="talos-reboot" title="talosctl reboot">Reboot</button><button data-action="talos-reset" title="talosctl reset and poweroff">Reset</button></td>
+				<td><button data-action="talos-shutdown" title="talosctl shutdown">Shutdown</button><button data-action="talos-reboot" title="talosctl reboot">Reboot</button><button data-action="talos-reset" title="talosctl reset and poweroff">Reset</button></td>
 				{{- if .BmcType}}
 				<td><button data-action="bmc-reset-to-network-rescue-wipe" title="Wipe the disk and install Talos">Reinstall</button><button data-action="bmc-reset-to-network-rescue" title="Reset the machine to the Rescue live system">Rescue</button><button data-action="bmc-reset" title="Reset the machine">Reset</button></td>
 				<td>{{.PowerState}}</td>

@@ -41,6 +41,15 @@ func talosctl(args ...string) (string, error) {
 	return strings.TrimSpace(stdout.String()), nil
 }
 
+func talosShutdown(machine *Machine) error {
+	// NB this will directly connect to the target machine (-e and
+	//    -n addresses are the same) without going tru a control
+	//    plane node.
+	_, err := talosctl("-e", machine.Name, "-n", machine.Name, "shutdown")
+
+	return err
+}
+
 func talosReboot(machine *Machine) error {
 	// NB this will directly connect to the target machine (-e and
 	//    -n addresses are the same) without going tru a control

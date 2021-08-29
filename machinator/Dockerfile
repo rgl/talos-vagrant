@@ -1,12 +1,12 @@
-FROM golang:1.16-buster as builder
+FROM golang:1.17-bullseye as builder
 WORKDIR /app
 COPY go.* ./
 RUN go mod download
 COPY *.go *.sh *.html ./
 RUN CGO_ENABLED=0 go build -ldflags="-s"
 
-# NB we use the buster-slim (instead of scratch) image so we can enter the container to execute bash etc.
-FROM debian:buster-slim
+# NB we use the bullseye-slim (instead of scratch) image so we can enter the container to execute bash etc.
+FROM debian:bullseye-slim
 RUN apt-get update && apt-get install -y ipmitool && rm -rf /var/lib/apt/lists/*
 ADD --chmod=755 https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 # TODO remove the next line after https://github.com/moby/buildkit/pull/2171 lands in a docker release.
