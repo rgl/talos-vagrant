@@ -28,6 +28,7 @@ while [ -z "$(talosctl service etcd status 2>/dev/null | grep -E '^HEALTH\s+OK$'
 
 title 'Downloading Kubernetes config to ~/.kube/config'
 talosctl kubeconfig
+chmod 600 ~/.kube/config
 install -d -m 700 -o vagrant -g vagrant /home/vagrant/.kube
 install -m 600 -o vagrant -g vagrant ~/.kube/config /home/vagrant/.kube/config
 

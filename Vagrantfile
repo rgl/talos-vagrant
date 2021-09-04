@@ -3,6 +3,7 @@
 CONFIG_DNS_DOMAIN = 'talos.test'
 CONFIG_TALOS_VERSION = '0.12.0' # see https://github.com/talos-systems/talos/releases
 CONFIG_KUBERNETES_VERSION = '1.22.1'
+CONFIG_HELM_VERSION = 'v3.6.3' # see https://github.com/helm/helm/releases
 CONFIG_K9S_VERSION = 'v0.24.15' # see https://github.com/derailed/k9s/releases
 
 CONFIG_PANDORA_BRIDGE_NAME = nil
@@ -61,6 +62,7 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-rescue.sh'
     config.vm.provision :shell, path: 'provision-machinator.sh'
     config.vm.provision :shell, path: 'provision-kubectl.sh', args: [CONFIG_KUBERNETES_VERSION]
+    config.vm.provision :shell, path: 'provision-helm.sh', args: [CONFIG_HELM_VERSION]
     config.vm.provision :shell, path: 'provision-k9s.sh', args: [CONFIG_K9S_VERSION]
     config.vm.provision :shell, path: 'provision-talos.sh', args: [CONFIG_TALOS_VERSION, CONFIG_KUBERNETES_VERSION, CONFIG_CONTROL_PLANE_VIP]
   end
