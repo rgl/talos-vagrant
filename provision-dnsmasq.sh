@@ -40,12 +40,8 @@ no-resolv
 no-hosts
 
 # DNS server
+server=/$dns_domain/127.0.0.2 # forward the $dns_domain zone to the local pdns server.
 server=$default_dns_resolver
-domain=$dns_domain # NB this is actually used by the DHCP server, but its related to our DNS domain, so we leave it here.
-auth-zone=$dns_domain
-auth-server=$(hostname --fqdn)
-host-record=$(hostname --fqdn),$ip_address
-host-record=cp.$dns_domain,$first_control_plane_ip # control_plane_vip=$control_plane_vip
 
 # listen on specific interfaces
 bind-interfaces

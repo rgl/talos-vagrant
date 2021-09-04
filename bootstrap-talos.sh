@@ -2,8 +2,10 @@
 source /vagrant/lib.sh
 
 
+pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 dns_domain="$(hostname --domain)"
 control_plane_fqdn="cp.$dns_domain"
+control_plane_vip="$(jq -r .CONFIG_CONTROL_PLANE_VIP /vagrant/shared/config.json)"
 
 
 #
@@ -46,8 +48,30 @@ cat /vagrant/shared/machines.json | jq -r '.[] | select(.type == "virtual") | .n
 done
 
 title 'Reconfiguring the Kubernetes control plane endpoint DNS A RR to the VIP'
-sed -i -E 's/^(host-record=.+?),.+? # control_plane_vip=(.+)/\1,\2/g' /etc/dnsmasq.d/local.conf
-systemctl restart dnsmasq
+# see https://doc.powerdns.com/authoritative/http-api
+# see https://doc.powerdns.com/md/httpapi/api_spec/
+http \
+    --print '' \
+    PATCH \
+    http://$pandora_ip_address:8081/api/v1/servers/localhost/zones/$dns_domain \
+    X-API-Key:vagrant \
+    rrsets:="$(cat <<EOF
+[
+    {
+        "name": "cp.$dns_domain.",
+        "type": "A",
+        "changetype": "REPLACE",
+        "ttl": 0,
+        "records": [
+            {
+                "content": "$control_plane_vip",
+                "disabled": false
+            }
+        ]
+    }
+]
+EOF
+)"
 dig $control_plane_fqdn
 
 title 'Adding all the control plane endpoints to the talosctl local configuration'
@@ -71,6 +95,8 @@ function get-config-value {
 bash /vagrant/provision-chart-metallb.sh \
     "$(get-config-value CONFIG_METALLB_CHART_VERSION)" \
     "$(get-config-value CONFIG_PANDORA_LOAD_BALANCER_RANGE)"
+bash /vagrant/provision-chart-external-dns.sh \
+    "$(get-config-value CONFIG_EXTERNAL_DNS_CHART_VERSION)"
 
 
 #

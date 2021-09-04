@@ -1,7 +1,7 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
-kubernetes_version="${1:-1.22.1}"; shift || true
+kubernetes_version="${1:-1.21.4}"; shift || true
 
 # see https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
 wget -qO /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg

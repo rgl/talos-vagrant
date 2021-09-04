@@ -1,11 +1,12 @@
 # set the external dns zone used for ssh into the machines and ingress.
 # NB the cluster dns zone must be different than this zone.
 CONFIG_DNS_DOMAIN = 'talos.test'
-CONFIG_TALOS_VERSION = '0.12.0' # see https://github.com/talos-systems/talos/releases
-CONFIG_KUBERNETES_VERSION = '1.22.1'
+CONFIG_TALOS_VERSION = '0.12.0' # see https://github.com/talos-systems/talos/releases and https://www.talos.dev/docs/v0.12/introduction/support-matrix/
+CONFIG_KUBERNETES_VERSION = '1.21.4' # see https://github.com/talos-systems/kubelet/releases (and https://kubernetes.io/releases/)
 CONFIG_HELM_VERSION = 'v3.6.3' # see https://github.com/helm/helm/releases
 CONFIG_K9S_VERSION = 'v0.24.15' # see https://github.com/derailed/k9s/releases
 CONFIG_METALLB_CHART_VERSION = '2.5.4' # see https://artifacthub.io/packages/helm/bitnami/metallb
+CONFIG_EXTERNAL_DNS_CHART_VERSION = '5.4.5' # see https://artifacthub.io/packages/helm/bitnami/external-dns
 
 CONFIG_PANDORA_BRIDGE_NAME = nil
 CONFIG_PANDORA_HOST_IP = '10.10.0.1'
@@ -60,6 +61,7 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-iptables.sh'
     config.vm.provision :shell, path: 'provision-docker.sh'
     config.vm.provision :shell, path: 'provision-meshcommander.sh'
+    config.vm.provision :shell, path: 'provision-pdns.sh', args: [CONFIG_PANDORA_IP]
     config.vm.provision :shell, path: 'provision-dnsmasq.sh', args: [CONFIG_PANDORA_IP, CONFIG_PANDORA_DHCP_RANGE, CONFIG_CONTROL_PLANE_VIP]
     config.vm.provision :shell, path: 'provision-ipxe.sh', args: [CONFIG_PANDORA_IP]
     config.vm.provision :shell, path: 'provision-rescue.sh'

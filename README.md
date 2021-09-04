@@ -59,6 +59,67 @@ script, e.g., to capture the traffic from the `eth1` interface:
 ./wireshark.sh pandora eth1
 ```
 
+## Host DNS resolver
+
+To delegate the `talos.test` zone to the kubernetes managed external dns server (running in pandora) you need to configure your system to delegate that DNS zone to the pandora DNS server, for that, you can configure your system to only use dnsmasq.
+
+For example, on my Ubuntu 20.04 Desktop, I have uninstalled `resolvconf`, disabled `NetworkManager`, and manually configured the network interfaces:
+
+```bash
+sudo su -l
+for n in NetworkManager NetworkManager-wait-online NetworkManager-dispatcher network-manager; do
+    systemctl mask --now $n
+done
+apt-get remove --purge resolvconf
+cat >/etc/network/interfaces <<'EOF'
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+auto enp3s0
+iface enp3s0 inet dhcp
+EOF
+reboot
+```
+
+Then, replaced `systemd-resolved` with `dnsmasq`:
+
+```bash
+sudo su -l
+apt-get install -y --no-install-recommends dnsutils dnsmasq
+systemctl mask --now systemd-resolved
+cat >/etc/dnsmasq.d/local.conf <<EOF
+no-resolv
+bind-interfaces
+interface=lo
+listen-address=127.0.0.1
+# delegate the talos.test zone to the pandora DNS server IP address.
+# NB use the CONFIG_PANDORA_IP variable value defined in the Vagrantfile.
+server=/talos.test/10.10.0.2
+# delegate to the Cloudflare/APNIC Public DNS IP addresses.
+# NB iif there's no entry in /etc/hosts.
+server=1.1.1.1
+server=1.0.0.1
+# delegate to the Google Public DNS IP addresses.
+# NB iif there's no entry in /etc/hosts.
+#server=8.8.8.8
+#server=8.8.4.4
+EOF
+rm /etc/resolv.conf
+cat >/etc/resolv.conf <<EOF
+nameserver 127.0.0.1
+EOF
+systemctl restart dnsmasq
+exit
+```
+
+Then start all the machines and test the DNS resolution:
+
+```bash
+vagrant up
+dig pandora.talos.test
+```
+
 ## Network Booting
 
 This environment uses PXE/TFTP/iPXE/HTTP/UEFI-HTTP to network boot the
@@ -141,6 +202,7 @@ This was tested on the following physical machines and boot modes:
   * [Getting Started](https://www.talos.dev/docs/v0.12/introduction/getting-started/)
   * [Configuring Network Connectivity](https://www.talos.dev/docs/v0.12/guides/configuring-network-connectivity/)
   * [Troubleshooting Control Plane](https://www.talos.dev/docs/v0.12/guides/troubleshooting-control-plane/)
+  * [Support Matrix](https://www.talos.dev/docs/v0.12/introduction/support-matrix/)
 * Linux
   * [Kernel Parameters Index](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.rst)
   * [Kernel Parameters List](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt)
