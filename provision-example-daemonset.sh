@@ -1,7 +1,34 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
-kubectl apply -f - <<'EOF'
+
+domain="$(hostname --domain)"
+
+
+kubectl apply -f - <<EOF
+---
+# see https://kubernetes.io/docs/concepts/services-networking/ingress/
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#ingress-v1-networking-k8s-io
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-daemonset
+spec:
+  rules:
+    # NB due to the external-dns controller this will automatically configure
+    #    the external DNS server (installed in the pandora box) based on this
+    #    ingress rule.
+    #    see https://github.com/kubernetes-incubator/external-dns
+    - host: example-daemonset.$domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: example-daemonset
+                port:
+                  name: web
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
 # see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#service-v1-core
@@ -11,15 +38,14 @@ kind: Service
 metadata:
   name: example-daemonset
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: example-daemonset
   ports:
-    - name: http
-      nodePort: 30000
-      port: 30000
+    - name: web
+      port: 80
       protocol: TCP
-      targetPort: http
+      targetPort: web
 ---
 # see https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
 # see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#daemonset-v1-apps
@@ -45,7 +71,7 @@ spec:
             - -listen
             - 0.0.0.0:9000
           ports:
-            - name: http
+            - name: web
               containerPort: 9000
           resources:
             requests:

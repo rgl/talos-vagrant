@@ -47,7 +47,7 @@ vagrant ssh -c 'bash /vagrant/provision-example-daemonset.sh' pandora
 Access the example service:
 
 ```bash
-vagrant ssh -c "watch -n .2 'wget -qO- http://cp1:30000 | tail -25; kubectl get pod -l app=example-daemonset -o=custom-columns=NODE:.spec.nodeName,STATUS:.status.phase,NAME:.metadata.name'" pandora
+vagrant ssh -c "watch -n .2 'wget -qO- http://example-daemonset.\$(hostname --domain) | tail -25; kubectl get pod -l app=example-daemonset -o=custom-columns=NODE:.spec.nodeName,STATUS:.status.phase,NAME:.metadata.name'" pandora
 ```
 
 ## Network Packet Capture

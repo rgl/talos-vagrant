@@ -97,6 +97,8 @@ bash /vagrant/provision-chart-metallb.sh \
     "$(get-config-value CONFIG_PANDORA_LOAD_BALANCER_RANGE)"
 bash /vagrant/provision-chart-external-dns.sh \
     "$(get-config-value CONFIG_EXTERNAL_DNS_CHART_VERSION)"
+bash /vagrant/provision-chart-traefik.sh \
+    "$(get-config-value CONFIG_TRAEFIK_CHART_VERSION)"
 
 
 #
