@@ -5,11 +5,13 @@ CONFIG_TALOS_VERSION = '0.12.0' # see https://github.com/talos-systems/talos/rel
 CONFIG_KUBERNETES_VERSION = '1.22.1'
 CONFIG_HELM_VERSION = 'v3.6.3' # see https://github.com/helm/helm/releases
 CONFIG_K9S_VERSION = 'v0.24.15' # see https://github.com/derailed/k9s/releases
+CONFIG_METALLB_CHART_VERSION = '2.5.4' # see https://artifacthub.io/packages/helm/bitnami/metallb
 
 CONFIG_PANDORA_BRIDGE_NAME = nil
 CONFIG_PANDORA_HOST_IP = '10.10.0.1'
 CONFIG_PANDORA_IP = '10.10.0.2'
-CONFIG_PANDORA_DHCP_RANGE = '10.10.0.100,10.10.0.200,10m'
+CONFIG_PANDORA_DHCP_RANGE = '10.10.0.100,10.10.0.199,10m'
+CONFIG_PANDORA_LOAD_BALANCER_RANGE = '10.10.0.200-10.10.0.219'
 CONFIG_CONTROL_PLANE_VIP = '10.10.0.3'
 
 # connect to the external physical network through the given bridge.
@@ -17,7 +19,8 @@ CONFIG_CONTROL_PLANE_VIP = '10.10.0.3'
 CONFIG_PANDORA_BRIDGE_NAME = 'br-rpi'
 CONFIG_PANDORA_HOST_IP = '10.3.0.1'
 CONFIG_PANDORA_IP = '10.3.0.2'
-CONFIG_PANDORA_DHCP_RANGE = '10.3.0.100,10.3.0.200,10m'
+CONFIG_PANDORA_DHCP_RANGE = '10.3.0.100,10.3.0.199,10m'
+CONFIG_PANDORA_LOAD_BALANCER_RANGE = '10.3.0.200-10.3.0.219'
 CONFIG_CONTROL_PLANE_VIP = '10.3.0.3'
 
 require './lib.rb'

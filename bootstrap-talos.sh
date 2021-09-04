@@ -63,6 +63,17 @@ sed "s,$control_plane_fqdn,$control_plane_vip,g" ~/.kube/config >/vagrant/shared
 
 
 #
+# deploy helm charts.
+
+function get-config-value {
+    jq -r ".$1" /vagrant/shared/config.json
+}
+bash /vagrant/provision-chart-metallb.sh \
+    "$(get-config-value CONFIG_METALLB_CHART_VERSION)" \
+    "$(get-config-value CONFIG_PANDORA_LOAD_BALANCER_RANGE)"
+
+
+#
 # show information about talos.
 
 title 'Talos version'

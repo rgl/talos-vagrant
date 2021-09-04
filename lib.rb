@@ -1,14 +1,25 @@
 require 'open3'
 
 def virtual_machines
-  configure_virtual_machines
+  save_config
+  save_virtual_machines_config
   machines = JSON.load(File.read('shared/machines.json')).select{|m| m['type'] == 'virtual'}
   machines.each_with_index.map do |m, i|
     [m['name'], m['arch'], m['firmware'], m['ip'], m['mac'], m['bmcType'], m['bmcIp'], m['bmcPort'], m['bmcQmpPort']]
   end
 end
 
-def configure_virtual_machines
+def save_config
+  FileUtils.mkdir_p 'shared'
+  File.write('shared/config.json', {
+    'CONFIG_PANDORA_IP': CONFIG_PANDORA_IP,
+    'CONFIG_CONTROL_PLANE_VIP': CONFIG_CONTROL_PLANE_VIP,
+    'CONFIG_PANDORA_LOAD_BALANCER_RANGE': CONFIG_PANDORA_LOAD_BALANCER_RANGE,
+    'CONFIG_METALLB_CHART_VERSION': CONFIG_METALLB_CHART_VERSION,
+  }.to_json)
+end
+
+def save_virtual_machines_config
   stdout, stderr, status = Open3.capture3('python3', 'machines.py', 'get-machines-json')
   if status.exitstatus != 0
     raise "failed to run python3 machines.py get-machines-json. status=#{status.exitstatus} stdout=#{stdout} stderr=#{stderr}"
