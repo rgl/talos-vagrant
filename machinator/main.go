@@ -219,9 +219,10 @@ var machinesStatusTemplateText string
 var machinesStatusTemplate = template.Must(template.New("MachinesStatus").Parse(machinesStatusTemplateText))
 
 type machinesStatusData struct {
-	Location        *time.Location
-	MachinesStatus  []MachineStatus
-	KubernetesNodes []KubernetesNode
+	Location            *time.Location
+	MachinesStatus      []MachineStatus
+	KubernetesNodes     []KubernetesNode
+	KubernetesIngresses []KubernetesIngress
 }
 
 //go:embed wipe.sh
@@ -393,12 +394,19 @@ func main() {
 			return
 		}
 
+		kubernetesIngresses, err := GetKubernetesIngresses()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
 		w.Header().Set("Content-Type", "text/html")
 
 		err = machinesStatusTemplate.ExecuteTemplate(w, "MachinesStatus", machinesStatusData{
-			Location:        location,
-			MachinesStatus:  machinesStatus,
-			KubernetesNodes: kubernetesNodes,
+			Location:            location,
+			MachinesStatus:      machinesStatus,
+			KubernetesNodes:     kubernetesNodes,
+			KubernetesIngresses: kubernetesIngresses,
 		})
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)

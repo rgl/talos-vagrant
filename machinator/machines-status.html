@@ -116,6 +116,25 @@ td.node-memory {
 			{{- end}}
 		</tbody>
 	</table>
+	<table>
+		<caption>Kubernetes Ingresses</caption>
+		<thead>
+			<tr>
+				<th class="ingress-name">Name</th>
+				<th class="ingress-namespace">Namespace</th>
+				<th class="ingress-url">Url</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{- range .KubernetesIngresses}}
+			<tr>
+				<td class="ingress-name">{{.Name}}</td>
+				<td class="ingress-namespace">{{.Namespace}}</td>
+				<td class="ingress-url"><a href="{{.Url}}">{{.Url}}</a></td>
+			</tr>
+			{{- end}}
+		</tbody>
+	</table>
 	<script>
 		document.addEventListener("click", function(event) {
 			if (!("action" in event.target.dataset)) {

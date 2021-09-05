@@ -24,6 +24,12 @@ type KubernetesNode struct {
 	ContainerRuntime string `json:"containerRuntime"`
 }
 
+type KubernetesIngress struct {
+	Name      string `json:"name"`
+	Namespace string `json:"namespace"`
+	Url       string `json:"url"`
+}
+
 type KubernetesExecError struct {
 	ExitCode int
 	Stdout   string
@@ -91,6 +97,34 @@ type kubernetesGetNodesResponse struct {
 	Items []kubernetesNode `json:"items"`
 }
 
+type kubernetesIngressMetadata struct {
+	Name      string `json:"name"`
+	Namespace string `json:"namespace"`
+}
+
+type kubernetesIngressRule struct {
+	Host string `json:"host"`
+}
+
+type kubernetesIngressTls struct {
+	SecretName string `json:"secretName"`
+}
+
+type kubernetesIngressSpec struct {
+	Rules []kubernetesIngressRule `json:"rules"`
+	Tls   []kubernetesIngressTls  `json:"tls"`
+}
+
+type kubernetesIngress struct {
+	Kind     string                    `json:"kind"`
+	Metadata kubernetesIngressMetadata `json:"metadata"`
+	Spec     kubernetesIngressSpec     `json:"spec"`
+}
+
+type kubernetesGetKubernetesIngressesResponse struct {
+	Items []kubernetesIngress `json:"items"`
+}
+
 func GetKubernetesNodes() ([]KubernetesNode, error) {
 	stdout, err := kubectl("get", "nodes", "-o", "json")
 	if err != nil {
@@ -150,4 +184,30 @@ func GetKubernetesNodes() ([]KubernetesNode, error) {
 	}
 
 	return nodes, nil
+}
+
+func GetKubernetesIngresses() ([]KubernetesIngress, error) {
+	stdout, err := kubectl("get", "ingress", "-A", "-o", "json")
+	if err != nil {
+		return nil, err
+	}
+
+	var response kubernetesGetKubernetesIngressesResponse
+	if err := json.Unmarshal([]byte(stdout), &response); err != nil {
+		return nil, err
+	}
+
+	ingresses := make([]KubernetesIngress, 0, len(response.Items))
+
+	for _, item := range response.Items {
+		for _, rule := range item.Spec.Rules {
+			ingresses = append(ingresses, KubernetesIngress{
+				Name:      item.Metadata.Name,
+				Namespace: item.Metadata.Namespace,
+				Url:       fmt.Sprintf("https://%s", rule.Host),
+			})
+		}
+	}
+
+	return ingresses, nil
 }
