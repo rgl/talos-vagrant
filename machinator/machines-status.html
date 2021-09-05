@@ -123,6 +123,7 @@ td.node-memory {
 				<th class="ingress-name">Name</th>
 				<th class="ingress-namespace">Namespace</th>
 				<th class="ingress-url">Url</th>
+				<th class="ingress-certificate-expires-at">Certificate Expires At ({{.Location}})</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -131,6 +132,7 @@ td.node-memory {
 				<td class="ingress-name">{{.Name}}</td>
 				<td class="ingress-namespace">{{.Namespace}}</td>
 				<td class="ingress-url"><a href="{{.Url}}">{{.Url}}</a></td>
+				<td>{{if not .CertificateExpiresAt.IsZero}}{{.CertificateExpiresAt}}{{end}}</td>
 			</tr>
 			{{- end}}
 		</tbody>

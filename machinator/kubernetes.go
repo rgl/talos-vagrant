@@ -2,11 +2,15 @@ package main
 
 import (
 	"bytes"
+	"crypto/x509"
+	"encoding/base64"
 	"encoding/json"
+	"encoding/pem"
 	"fmt"
 	"os/exec"
 	"sort"
 	"strings"
+	"time"
 )
 
 type KubernetesNode struct {
@@ -25,9 +29,10 @@ type KubernetesNode struct {
 }
 
 type KubernetesIngress struct {
-	Name      string `json:"name"`
-	Namespace string `json:"namespace"`
-	Url       string `json:"url"`
+	Name                 string    `json:"name"`
+	Namespace            string    `json:"namespace"`
+	Url                  string    `json:"url"`
+	CertificateExpiresAt time.Time `json:"certificateExpiresAt"`
 }
 
 type KubernetesExecError struct {
@@ -186,6 +191,35 @@ func GetKubernetesNodes() ([]KubernetesNode, error) {
 	return nodes, nil
 }
 
+type kubernetesCertificateSecretData struct {
+	TlsCrt string `json:"tls.crt"`
+}
+
+type kubernetesCertificateSecret struct {
+	Data kubernetesCertificateSecretData `json:"data"`
+}
+
+func getKubernetesCertificate(namespace string, secretName string) (*x509.Certificate, error) {
+	stdout, err := kubectl("get", "secret", "-n", namespace, secretName, "-o", "json")
+	if err != nil {
+		return nil, err
+	}
+
+	var secret kubernetesCertificateSecret
+	if err := json.Unmarshal([]byte(stdout), &secret); err != nil {
+		return nil, err
+	}
+
+	pemData, err := base64.StdEncoding.DecodeString(secret.Data.TlsCrt)
+	if err != nil {
+		return nil, err
+	}
+
+	block, _ := pem.Decode(pemData)
+
+	return x509.ParseCertificate(block.Bytes)
+}
+
 func GetKubernetesIngresses() ([]KubernetesIngress, error) {
 	stdout, err := kubectl("get", "ingress", "-A", "-o", "json")
 	if err != nil {
@@ -200,11 +234,20 @@ func GetKubernetesIngresses() ([]KubernetesIngress, error) {
 	ingresses := make([]KubernetesIngress, 0, len(response.Items))
 
 	for _, item := range response.Items {
+		var certificateExpiresAt time.Time
+		if len(item.Spec.Tls) > 0 {
+			certificate, err := getKubernetesCertificate(item.Metadata.Namespace, item.Spec.Tls[0].SecretName)
+			if err != nil {
+				return nil, err
+			}
+			certificateExpiresAt = certificate.NotAfter.Local()
+		}
 		for _, rule := range item.Spec.Rules {
 			ingresses = append(ingresses, KubernetesIngress{
-				Name:      item.Metadata.Name,
-				Namespace: item.Metadata.Namespace,
-				Url:       fmt.Sprintf("https://%s", rule.Host),
+				Name:                 item.Metadata.Name,
+				Namespace:            item.Metadata.Namespace,
+				Url:                  fmt.Sprintf("https://%s", rule.Host),
+				CertificateExpiresAt: certificateExpiresAt,
 			})
 		}
 	}
