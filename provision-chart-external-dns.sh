@@ -19,6 +19,10 @@ helm repo update
 helm search repo bitnami/external-dns --versions | head -5
 
 # install.
+# NB this cannot yet use k8s 1.22 because its still using the deprecated ingress api version.
+#    see https://github.com/kubernetes-sigs/external-dns/pull/2218 seems to add support for 1.22 but its not yet shipped in a release.
+#    see https://github.com/kubernetes-sigs/external-dns/issues/2168
+#    see https://github.com/kubernetes-sigs/external-dns/issues/961#issuecomment-895705995
 helm upgrade --install \
   external-dns \
   bitnami/external-dns \
