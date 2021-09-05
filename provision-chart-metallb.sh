@@ -22,7 +22,8 @@ helm upgrade --install \
   metallb \
   bitnami/metallb \
   --version $metallb_chart_version \
-  --namespace kube-system \
+  --namespace metallb \
+  --create-namespace \
   --values <(cat <<EOF
 configInline:
   address-pools:

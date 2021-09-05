@@ -27,7 +27,8 @@ helm upgrade --install \
   external-dns \
   bitnami/external-dns \
   --version $external_dns_chart_version \
-  --namespace kube-system \
+  --namespace external-dns \
+  --create-namespace \
   --values <(cat <<EOF
 logLevel: debug
 interval: 30s

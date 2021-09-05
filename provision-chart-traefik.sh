@@ -22,7 +22,8 @@ helm upgrade --install \
   traefik \
   traefik/traefik \
   --version $traefik_chart_version \
-  --namespace kube-system \
+  --namespace traefik \
+  --create-namespace \
   --values <(cat <<EOF
 ports:
   # enable tls.
@@ -68,7 +69,7 @@ EOF
 )
 
 # expose the traefik dashboard at https://traefik.talos.test.
-kubectl apply -n kube-system -f - <<EOF
+kubectl apply -n traefik -f - <<EOF
 ---
 # see https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.Certificate
 apiVersion: cert-manager.io/v1
