@@ -67,8 +67,31 @@ globalArguments:
 EOF
 )
 
-# expose the traefik dashboard at http://traefik.talos.test.
+# expose the traefik dashboard at https://traefik.talos.test.
 kubectl apply -n kube-system -f - <<EOF
+---
+# see https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.Certificate
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik
+spec:
+  subject:
+    organizations:
+      - Example
+    organizationalUnits:
+      - Kubernetes
+  commonName: Traefik Dashboard
+  dnsNames:
+    - traefik.$domain
+  duration: 1h # NB this is so low for testing purposes.
+  privateKey:
+    algorithm: ECDSA # NB Ed25519 is not yet supported by chrome 93 or firefox 91.
+    size: 256
+  secretName: traefik-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: ingress
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -76,7 +99,9 @@ metadata:
   name: traefik
 spec:
   entryPoints:
-    - web
+    - websecure
+  tls:
+    secretName: traefik-tls
   routes:
     - match: Host("traefik.$domain")
       kind: Rule

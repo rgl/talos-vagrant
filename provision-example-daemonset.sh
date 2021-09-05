@@ -7,6 +7,29 @@ domain="$(hostname --domain)"
 
 kubectl apply -f - <<EOF
 ---
+# see https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.Certificate
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: example-daemonset
+spec:
+  subject:
+    organizations:
+      - Example
+    organizationalUnits:
+      - Kubernetes
+  commonName: example-daemonset
+  dnsNames:
+    - example-daemonset.$domain
+  duration: 1h # NB this is so low for testing purposes.
+  privateKey:
+    algorithm: ECDSA # NB Ed25519 is not yet supported by chrome 93 or firefox 91.
+    size: 256
+  secretName: example-daemonset-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: ingress
+---
 # see https://kubernetes.io/docs/concepts/services-networking/ingress/
 # see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#ingress-v1-networking-k8s-io
 apiVersion: networking.k8s.io/v1
@@ -14,6 +37,8 @@ kind: Ingress
 metadata:
   name: example-daemonset
 spec:
+  tls:
+    - secretName: example-daemonset-tls
   rules:
     # NB due to the external-dns controller this will automatically configure
     #    the external DNS server (installed in the pandora box) based on this
