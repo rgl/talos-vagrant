@@ -7,6 +7,7 @@ CONFIG_HELM_VERSION = 'v3.6.3' # see https://github.com/helm/helm/releases
 CONFIG_K9S_VERSION = 'v0.24.15' # see https://github.com/derailed/k9s/releases
 CONFIG_METALLB_CHART_VERSION = '2.5.4' # see https://artifacthub.io/packages/helm/bitnami/metallb
 CONFIG_EXTERNAL_DNS_CHART_VERSION = '5.4.5' # see https://artifacthub.io/packages/helm/bitnami/external-dns
+CONFIG_CERT_MANAGER_CHART_VERSION = '1.5.3' # see https://artifacthub.io/packages/helm/cert-manager/cert-manager
 CONFIG_TRAEFIK_CHART_VERSION = '10.3.2' # see https://artifacthub.io/packages/helm/traefik/traefik
 
 CONFIG_PANDORA_BRIDGE_NAME = nil
