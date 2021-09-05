@@ -101,6 +101,8 @@ bash /vagrant/provision-chart-cert-manager.sh \
     "$(get-config-value CONFIG_CERT_MANAGER_CHART_VERSION)"
 bash /vagrant/provision-chart-traefik.sh \
     "$(get-config-value CONFIG_TRAEFIK_CHART_VERSION)"
+bash /vagrant/provision-chart-kubernetes-dashboard.sh \
+    "$(get-config-value CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION)"
 
 
 #
