@@ -13,6 +13,7 @@ cat >/wipe.py <<'EOF'
 import json
 import requests
 import subprocess
+import time
 
 def parse_args(lines):
     args = {}
@@ -58,7 +59,9 @@ r = requests.post('{{.WipedUrl}}')
 r.raise_for_status()
 
 if r.text == 'reboot':
-    print('Rebooting...')
+    for t in reversed(range(10)):
+        print(f'Rebooting in T-{t+1}...')
+        time.sleep(1)
     subprocess.run(['reboot'], check=True)
 EOF
 
