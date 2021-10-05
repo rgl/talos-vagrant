@@ -91,7 +91,7 @@ spec:
     spec:
       containers:
         - name: example-daemonset
-          image: ruilopes/example-docker-buildx-go:v1.3.0
+          image: ruilopes/example-docker-buildx-go:v1.4.0
           args:
             - -listen
             - 0.0.0.0:9000
