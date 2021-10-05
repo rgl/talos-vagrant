@@ -95,11 +95,12 @@ def get_matchbox_groups():
             "name": name,
             "profile": profile,
             "selector": {
-                "mac": machine['mac']
+                "mac": machine['mac'],
             },
             "metadata": {
-                "installDisk": machine['installDisk']
-            }
+                "installDisk": machine['installDisk'],
+                "kexec": machine['kexec'],
+            },
         }
         yield (name, data)
 
@@ -183,6 +184,11 @@ def get_machines(prefix='/vagrant'):
                 machine['installDisk'] = '/dev/vda'
             elif machine['type'] == 'physical':
                 machine['installDisk'] = '/dev/sda'
+
+    # populate the missing kexec.
+    for machine in machines:
+        if 'kexec' not in machine:
+            machine['kexec'] = True
 
     return machines
 

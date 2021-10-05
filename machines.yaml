@@ -44,3 +44,4 @@
   mac: dc:a6:32:b0:ba:1d
   hostNumber: 22
   type: physical
+  kexec: false
