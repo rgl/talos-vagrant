@@ -9,7 +9,7 @@ CONFIG_METALLB_CHART_VERSION = '2.5.6' # see https://artifacthub.io/packages/hel
 CONFIG_EXTERNAL_DNS_CHART_VERSION = '5.4.8' # see https://artifacthub.io/packages/helm/bitnami/external-dns
 CONFIG_CERT_MANAGER_CHART_VERSION = '1.5.4' # see https://artifacthub.io/packages/helm/cert-manager/cert-manager
 CONFIG_TRAEFIK_CHART_VERSION = '10.4.0' # see https://artifacthub.io/packages/helm/traefik/traefik
-CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION = '5.0.0' # see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
+CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION = '5.0.2' # see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
 
 CONFIG_PANDORA_BRIDGE_NAME = nil
 CONFIG_PANDORA_HOST_IP = '10.10.0.1'
