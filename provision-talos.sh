@@ -3,7 +3,7 @@ source /vagrant/lib.sh
 
 
 dns_domain="$(hostname --domain)"
-talos_version="${1:-0.13.0-beta.0}"; shift || true
+talos_version="${1:-0.13.0}"; shift || true
 kubernetes_version="${1:-1.21.5}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 
