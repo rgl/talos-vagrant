@@ -91,7 +91,8 @@ talosctl gen config \
     --config-patch "$(cat config-patch.json)" \
     --config-patch-control-plane "$(cat config-patch-controlplane.json)" \
     --with-docs=false \
-    --with-examples=false
+    --with-examples=false \
+    --with-cluster-discovery=false
 talosctl validate --config controlplane.yaml --mode metal
 talosctl validate --config worker.yaml --mode metal
 install -m 644 controlplane.yaml /var/lib/matchbox/generic
