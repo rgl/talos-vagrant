@@ -42,6 +42,9 @@ pushd talos
 # NB wipe:true is too slow and wasteful for our use-case as it will zero the
 #    entire device. instead, we have to net boot the rescue wipe image and
 #    use wipefs to wipe the boot/install disk.
+# NB the kernel.kexec_load_disabled sysctl cannot be set to 0. so we must do
+#    this with /machine/install/extraKernelArgs instead of using
+#    /machine/sysctls.
 cat >config-patch.json <<EOF
 [
     {
@@ -53,15 +56,9 @@ cat >config-patch.json <<EOF
         "op": "replace",
         "path": "/machine/install/extraKernelArgs",
         "value": [
-            "ipv6.disable=1"
+            "ipv6.disable=1",
+            "{{if not .kexec}}sysctl.kernel.kexec_load_disabled=1{{end}}"
         ]
-    },
-    {
-        "op": "replace",
-        "path": "/machine/sysctls",
-        "value": {
-            "kernel.kexec_load_disabled": "{{if .kexec}}0{{else}}1{{end}}"
-        }
     }
 ]
 EOF
