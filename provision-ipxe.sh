@@ -10,7 +10,7 @@ install -m 644 /usr/lib/ipxe/ipxe.efi /var/lib/matchbox/assets
 
 # install the arm64 architecture binaries.
 # see https://github.com/rgl/rpi4-uefi-ipxe
-wget -q https://github.com/rgl/rpi4-uefi-ipxe/releases/download/v0.2.0/rpi4-uefi-ipxe.zip
+wget -q https://github.com/rgl/rpi4-uefi-ipxe/releases/download/v0.5.0/rpi4-uefi-ipxe.zip
 unzip -d rpi4-uefi-ipxe rpi4-uefi-ipxe.zip
 pushd rpi4-uefi-ipxe
 install -m 644 efi/boot/bootaa64.efi /srv/pxe/ipxe-arm64.efi
