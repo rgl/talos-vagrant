@@ -1,0 +1,24 @@
+sources:
+  talos:
+    type: socket
+    mode: tcp
+    address: 0.0.0.0:5170
+    decoding:
+      codec: json
+    host_key: __host
+sinks:
+  loki:
+    type: loki
+    inputs:
+      - talos
+    endpoint: http://localhost:3100
+    labels:
+      job: talos
+      host: "{{ __host }}"
+      service: "{{ talos-service }}"
+    encoding:
+      codec: json
+      except_fields:
+        - __host
+    batch:
+      max_bytes: 1048576 # 1 MiB

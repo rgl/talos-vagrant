@@ -21,6 +21,7 @@ from tabulate import tabulate
 headers = ('service', 'address', 'username', 'password')
 
 def info():
+    yield ('grafana',              'http://pandora.$dns_domain:3000',          None,    None)
     yield ('meshcommander',        'http://pandora.$dns_domain:4000',          None,    None)
     yield ('machinator',           'http://pandora.$dns_domain:8000',          None,    None)
     yield ('traefik',              'https://traefik.$dns_domain',              None,    None)

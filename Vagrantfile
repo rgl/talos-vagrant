@@ -68,6 +68,9 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-dnsmasq.sh', args: [CONFIG_PANDORA_IP, CONFIG_PANDORA_DHCP_RANGE, CONFIG_CONTROL_PLANE_VIP]
     config.vm.provision :shell, path: 'provision-ipxe.sh', args: [CONFIG_PANDORA_IP]
     config.vm.provision :shell, path: 'provision-rescue.sh'
+    config.vm.provision :shell, path: 'provision-loki.sh'
+    config.vm.provision :shell, path: 'provision-vector.sh'
+    config.vm.provision :shell, path: 'provision-grafana.sh'
     config.vm.provision :shell, path: 'provision-machinator.sh'
     config.vm.provision :shell, path: 'provision-kubectl.sh', args: [CONFIG_KUBERNETES_VERSION]
     config.vm.provision :shell, path: 'provision-helm.sh', args: [CONFIG_HELM_VERSION]

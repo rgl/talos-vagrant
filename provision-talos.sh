@@ -6,6 +6,7 @@ dns_domain="$(hostname --domain)"
 talos_version="${1:-0.14.0-alpha.0}"; shift || true
 kubernetes_version="${1:-1.22.2}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
+pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 
 
 #
@@ -59,6 +60,18 @@ cat >config-patch.json <<EOF
             "ipv6.disable=1",
             "{{if not .kexec}}sysctl.kernel.kexec_load_disabled=1{{end}}"
         ]
+    },
+    {
+        "op": "replace",
+        "path": "/machine/logging",
+        "value": {
+            "destinations": [
+                {
+                    "endpoint": "tcp://$pandora_ip_address:5170",
+                    "format": "json_lines"
+                }
+            ]
+        }
     }
 ]
 EOF
