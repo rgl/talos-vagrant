@@ -4,7 +4,7 @@ source /vagrant/lib.sh
 
 dns_domain="$(hostname --domain)"
 talos_version="${1:-0.14.0-alpha.0}"; shift || true
-kubernetes_version="${1:-1.22.2}"; shift || true
+kubernetes_version="${1:-1.22.3}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 
@@ -31,7 +31,7 @@ talosctl version --client
 # install talos.
 # see https://www.talos.dev/docs/v0.14/bare-metal-platforms/matchbox/
 # see https://www.talos.dev/docs/v0.14/guides/vip/
-# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/talos-systems/kubelet:v1.22.2
+# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/talos-systems/kubelet:v1.22.3
 #    execute `talosctl images` to show the defaults.
 # NB this generates yaml file that will be interpreted by matchbox as Go
 #    templates. this means we can use matchbox metadata variables like
