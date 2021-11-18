@@ -4,7 +4,7 @@ source /vagrant/lib.sh
 # kubernetes-dashboard chart.
 # see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
 # see https://github.com/kubernetes/dashboard/blob/master/aio/deploy/helm-chart/kubernetes-dashboard/values.yaml
-kubernetes_dashboard_chart_version="${1:-5.0.3}"; shift || true
+kubernetes_dashboard_chart_version="${1:-5.0.4}"; shift || true
 domain="$(hostname --domain)"
 
 # add the kubernetes helm charts repository.
