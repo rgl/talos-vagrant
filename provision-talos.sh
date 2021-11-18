@@ -3,7 +3,7 @@ source /vagrant/lib.sh
 
 
 dns_domain="$(hostname --domain)"
-talos_version="${1:-0.14.0-alpha.0}"; shift || true
+talos_version="${1:-0.14.0-alpha.1}"; shift || true
 kubernetes_version="${1:-1.22.3}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
