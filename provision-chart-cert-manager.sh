@@ -1,7 +1,7 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
-cert_manager_chart_version="${1:-1.5.4}"; shift || true
+cert_manager_chart_version="${1:-1.6.1}"; shift || true
 
 # provision cert-manager.
 # NB YOU MUST INSTALL CERT-MANAGER TO THE cert-manager NAMESPACE. the CRDs have it hard-coded.
