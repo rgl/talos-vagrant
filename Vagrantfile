@@ -29,6 +29,9 @@ CONFIG_CONTROL_PLANE_VIP = '10.3.0.3'
 
 require './lib.rb'
 
+# get the docker hub auth from the host ~/.docker/config.json file.
+DOCKER_HUB_AUTH = get_docker_hub_auth
+
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu-20.04-amd64'
 
@@ -63,6 +66,7 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-chrony.sh'
     config.vm.provision :shell, path: 'provision-iptables.sh'
     config.vm.provision :shell, path: 'provision-docker.sh'
+    config.vm.provision :shell, path: 'provision-docker-hub-auth.sh', env: {'DOCKER_HUB_AUTH' => DOCKER_HUB_AUTH} if DOCKER_HUB_AUTH
     config.vm.provision :shell, path: 'provision-meshcommander.sh'
     config.vm.provision :shell, path: 'provision-pdns.sh', args: [CONFIG_PANDORA_IP]
     config.vm.provision :shell, path: 'provision-dnsmasq.sh', args: [CONFIG_PANDORA_IP, CONFIG_PANDORA_DHCP_RANGE, CONFIG_CONTROL_PLANE_VIP]

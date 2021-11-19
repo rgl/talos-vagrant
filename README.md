@@ -16,6 +16,8 @@ For playing with [Sidero](https://www.sidero.dev) see the [rgl/sidero-vagrant](h
 
 Install docker, vagrant, vagrant-libvirt, and the [Ubuntu Base Box](https://github.com/rgl/ubuntu-vagrant).
 
+Login into docker hub to have a [higher rate limits](https://www.docker.com/increase-rate-limits).
+
 If you want to connect to the external physical network, you must configure your host network as described in [rgl/ansible-collection-tp-link-easy-smart-switch](https://github.com/rgl/ansible-collection-tp-link-easy-smart-switch#take-ownership-procedure) (e.g. have the `br-rpi` linux bridge) and set `CONFIG_PANDORA_BRIDGE_NAME` in the `Vagrantfile`.
 
 Bring up the cluster virtual machines:

@@ -1,5 +1,13 @@
 require 'open3'
 
+def get_docker_hub_auth
+  config_path = File.expand_path '~/.docker/config.json'
+  return nil unless File.exists? config_path
+  config = JSON.load File.read(config_path)
+  return nil unless config.has_key?('auths') && config['auths'].has_key?('https://index.docker.io/v1/')
+  config['auths']['https://index.docker.io/v1/']['auth']
+end
+
 def virtual_machines
   save_config
   save_virtual_machines_config
