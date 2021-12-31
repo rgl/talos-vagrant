@@ -1,8 +1,8 @@
 # set the external dns zone used for ssh into the machines and ingress.
 # NB the cluster dns zone must be different than this zone.
 CONFIG_DNS_DOMAIN = 'talos.test'
-CONFIG_TALOS_VERSION = '0.14.0-alpha.2' # see https://github.com/talos-systems/talos/releases and https://www.talos.dev/docs/v0.14/introduction/support-matrix/
-CONFIG_KUBERNETES_VERSION = '1.22.4' # see https://github.com/talos-systems/kubelet/releases (and https://kubernetes.io/releases/)
+CONFIG_TALOS_VERSION = '0.14.0' # see https://github.com/talos-systems/talos/releases and https://www.talos.dev/docs/v0.14/introduction/support-matrix/
+CONFIG_KUBERNETES_VERSION = '1.23.1' # see https://github.com/talos-systems/kubelet/releases (and https://kubernetes.io/releases/)
 CONFIG_HELM_VERSION = 'v3.7.2' # see https://github.com/helm/helm/releases
 CONFIG_K9S_VERSION = 'v0.25.18' # see https://github.com/derailed/k9s/releases
 CONFIG_METALLB_CHART_VERSION = '2.5.16' # see https://artifacthub.io/packages/helm/bitnami/metallb

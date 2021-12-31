@@ -31,7 +31,7 @@ spec:
     name: ingress
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/ingress/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#ingress-v1-networking-k8s-io
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#ingress-v1-networking-k8s-io
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -56,8 +56,8 @@ spec:
                   name: web
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#service-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#serviceport-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#service-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#serviceport-v1-core
 apiVersion: v1
 kind: Service
 metadata:
@@ -73,9 +73,9 @@ spec:
       targetPort: web
 ---
 # see https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#daemonset-v1-apps
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#podtemplatespec-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#container-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#daemonset-v1-apps
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podtemplatespec-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
