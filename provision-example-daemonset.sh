@@ -90,11 +90,35 @@ spec:
         app: example-daemonset
     spec:
       containers:
+        # see https://github.com/rgl/example-docker-buildx-go
         - name: example-daemonset
-          image: ruilopes/example-docker-buildx-go:v1.4.0
+          image: ruilopes/example-docker-buildx-go:v1.5.0
           args:
             - -listen
             - 0.0.0.0:9000
+          env:
+            # see https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/
+            # see https://github.com/kubernetes/kubernetes/blob/master/test/e2e/common/downward_api.go
+            - name: EXAMPLE_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: EXAMPLE_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: EXAMPLE_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: EXAMPLE_POD_UID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+            - name: EXAMPLE_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
           ports:
             - name: web
               containerPort: 9000
