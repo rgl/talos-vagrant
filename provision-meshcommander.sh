@@ -2,6 +2,8 @@
 source /vagrant/lib.sh
 cd /vagrant/meshcommander
 
+docker rm -f meshcommander || true
+
 docker build -t meshcommander .
 
 docker run \
