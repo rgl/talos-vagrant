@@ -3,7 +3,7 @@ set -euxo pipefail
 
 # see https://github.com/grafana/loki/releases
 # see https://hub.docker.com/r/grafana/loki/tags
-loki_version="2.4.1"
+loki_version="2.4.2"
 
 # destroy the existing loki container and data.
 docker rm --force loki && rm -rf ~/loki && mkdir ~/loki
