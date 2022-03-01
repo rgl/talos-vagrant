@@ -8,7 +8,7 @@ CONFIG_K9S_VERSION = 'v0.25.18' # see https://github.com/derailed/k9s/releases
 CONFIG_METALLB_CHART_VERSION = '2.6.2' # see https://artifacthub.io/packages/helm/bitnami/metallb
 CONFIG_EXTERNAL_DNS_CHART_VERSION = '6.1.7' # see https://artifacthub.io/packages/helm/bitnami/external-dns
 CONFIG_CERT_MANAGER_CHART_VERSION = '1.7.1' # see https://artifacthub.io/packages/helm/cert-manager/cert-manager
-CONFIG_TRAEFIK_CHART_VERSION = '10.9.1' # see https://artifacthub.io/packages/helm/traefik/traefik
+CONFIG_TRAEFIK_CHART_VERSION = '10.14.2' # see https://artifacthub.io/packages/helm/traefik/traefik
 CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION = '5.2.0' # see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
 
 CONFIG_PANDORA_BRIDGE_NAME = nil
