@@ -5,7 +5,7 @@ source /vagrant/lib.sh
 # see https://artifacthub.io/packages/helm/bitnami/metallb
 # see https://metallb.universe.tf/configuration/#layer-2-configuration
 # see https://github.com/bitnami/charts/tree/master/bitnami/metallb
-metallb_chart_version="${1:-2.6.2}"; shift || true
+metallb_chart_version="${1:-2.6.8}"; shift || true
 metallb_ip_addresses="${1:-10.10.0.200-10.10.0.219}"; shift || true
 
 # add the gitlab helm charts repository.
@@ -14,7 +14,7 @@ helm repo update
 
 # search the chart and app versions, e.g.: in this case we are using:
 #     NAME             CHART VERSION  APP VERSION  DESCRIPTION
-#     bitnami/metallb  2.6.2          0.11.0       The Metal LB for Kubernetes
+#     bitnami/metallb  2.6.8          0.12.1       The Metal LB for Kubernetes
 helm search repo bitnami/metallb --versions | head -5
 
 # install.
