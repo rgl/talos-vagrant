@@ -3,7 +3,7 @@ source /vagrant/lib.sh
 
 
 dns_domain="$(hostname --domain)"
-talos_version="${1:-0.14.2}"; shift || true
+talos_version="${1:-1.0.0-beta.1}"; shift || true
 kubernetes_version="${1:-1.23.4}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
@@ -29,8 +29,8 @@ talosctl version --client
 
 #
 # install talos.
-# see https://www.talos.dev/docs/v0.14/bare-metal-platforms/matchbox/
-# see https://www.talos.dev/docs/v0.14/guides/vip/
+# see https://www.talos.dev/docs/v1.0/bare-metal-platforms/matchbox/
+# see https://www.talos.dev/docs/v1.0/guides/vip/
 # NB kubernetes_version refers to the kublet image, e.g., ghcr.io/talos-systems/kubelet:v1.23.4
 #    execute `talosctl images` to show the defaults.
 # NB this generates yaml file that will be interpreted by matchbox as Go
