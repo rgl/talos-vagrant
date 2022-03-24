@@ -41,7 +41,6 @@ def get_matchbox_profiles():
                 "kernel": f"/assets/vmlinuz-{arch}",
                 "initrd": [f"/assets/initramfs-{arch}.xz"],
                 "args": [
-                    "ipv6.disable=1",
                     "sysctl.kernel.kexec_load_disabled=1" if arch == 'arm64' else None,
                     f"initrd=initramfs-{arch}.xz",
                     "init_on_alloc=1",
@@ -63,7 +62,6 @@ def get_matchbox_profiles():
                 "kernel": f"/assets/vmlinuz-{arch}",
                 "initrd": [f"/assets/initramfs-{arch}.xz"],
                 "args": [
-                    "ipv6.disable=1",
                     "sysctl.kernel.kexec_load_disabled=1" if arch == 'arm64' else None,
                     f"initrd=initramfs-{arch}.xz",
                     "init_on_alloc=1",

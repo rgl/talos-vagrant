@@ -4,7 +4,7 @@ source /vagrant/lib.sh
 
 dns_domain="$(hostname --domain)"
 talos_version="${1:-1.0.0-beta.2}"; shift || true
-kubernetes_version="${1:-1.23.4}"; shift || true
+kubernetes_version="${1:-1.23.5}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 
@@ -31,7 +31,7 @@ talosctl version --client
 # install talos.
 # see https://www.talos.dev/v1.0/bare-metal-platforms/matchbox/
 # see https://www.talos.dev/v1.0/guides/vip/
-# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/siderolabs/kubelet:v1.23.4
+# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/siderolabs/kubelet:v1.23.5
 #    execute `talosctl images` to show the defaults.
 # NB this generates yaml file that will be interpreted by matchbox as Go
 #    templates. this means we can use matchbox metadata variables like
@@ -57,7 +57,6 @@ cat >config-patch.json <<EOF
         "op": "replace",
         "path": "/machine/install/extraKernelArgs",
         "value": [
-            "ipv6.disable=1",
             "{{if not .kexec}}sysctl.kernel.kexec_load_disabled=1{{end}}"
         ]
     },

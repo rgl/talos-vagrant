@@ -18,11 +18,6 @@ systemctl disable systemd-timesyncd
 # install chrony.
 apt-get install -y chrony
 
-# only use IPv4.
-# NB unfortunately this will not prevent some IPv6 warnings like:
-#       chronyd[2361]: Could not open IPv6 NTP socket : Address family not supported by protocol
-sed -i -E 's,^(DAEMON_OPTS=)"(.*)",\1"-4 \2",' /etc/default/chrony 
-
 # configure.
 cat >>/etc/chrony/chrony.conf <<EOF
 # NB you might need to configure the upstream ntp server pool.
