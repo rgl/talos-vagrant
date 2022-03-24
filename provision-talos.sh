@@ -19,9 +19,9 @@ assets=(
     initramfs-arm64.xz
 )
 for asset in ${assets[@]}; do
-    wget -qO /var/lib/matchbox/assets/$asset "https://github.com/talos-systems/talos/releases/download/v$talos_version/$asset"
+    wget -qO /var/lib/matchbox/assets/$asset "https://github.com/siderolabs/talos/releases/download/v$talos_version/$asset"
 done
-wget -qO /usr/local/bin/talosctl "https://github.com/talos-systems/talos/releases/download/v$talos_version/talosctl-$(uname -s | tr "[:upper:]" "[:lower:]")-amd64"
+wget -qO /usr/local/bin/talosctl "https://github.com/siderolabs/talos/releases/download/v$talos_version/talosctl-$(uname -s | tr "[:upper:]" "[:lower:]")-amd64"
 chmod +x /usr/local/bin/talosctl
 talosctl completion bash >/usr/share/bash-completion/completions/talosctl
 talosctl version --client
@@ -31,7 +31,7 @@ talosctl version --client
 # install talos.
 # see https://www.talos.dev/docs/v1.0/bare-metal-platforms/matchbox/
 # see https://www.talos.dev/docs/v1.0/guides/vip/
-# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/talos-systems/kubelet:v1.23.4
+# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/siderolabs/kubelet:v1.23.4
 #    execute `talosctl images` to show the defaults.
 # NB this generates yaml file that will be interpreted by matchbox as Go
 #    templates. this means we can use matchbox metadata variables like

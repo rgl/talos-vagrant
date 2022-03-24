@@ -190,7 +190,7 @@ This was tested on the following physical machines and boot modes:
 
 # Alternatives and Related Projects
 
-* [sidero](https://github.com/talos-systems/sidero)
+* [sidero](https://github.com/siderolabs/sidero)
 * [k3s](https://github.com/k3s-io/k3s)
 * [k3os](https://github.com/rancher/k3os)
 * [harvester](https://github.com/harvester/harvester)
