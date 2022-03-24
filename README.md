@@ -164,7 +164,7 @@ This was tested on the following physical machines and boot modes:
 # Troubleshoot
 
 * Talos
-  * [Troubleshooting Control Plane](https://www.talos.dev/docs/v1.0/guides/troubleshooting-control-plane/)
+  * [Troubleshooting Control Plane](https://www.talos.dev/v1.0/guides/troubleshooting-control-plane/)
   * `talosctl -n cp1 dashboard`
   * `talosctl -n cp1 logs controller-runtime`
   * `talosctl -n cp1 logs kubelet`
@@ -202,10 +202,10 @@ This was tested on the following physical machines and boot modes:
 
 * Talos
   * [Talos Site](https://www.talos.dev/)
-  * [Getting Started](https://www.talos.dev/docs/v1.0/introduction/getting-started/)
-  * [Configuring Network Connectivity](https://www.talos.dev/docs/v1.0/guides/configuring-network-connectivity/)
-  * [Troubleshooting Control Plane](https://www.talos.dev/docs/v1.0/guides/troubleshooting-control-plane/)
-  * [Support Matrix](https://www.talos.dev/docs/v1.0/introduction/support-matrix/)
+  * [Getting Started](https://www.talos.dev/v1.0/introduction/getting-started/)
+  * [Configuring Network Connectivity](https://www.talos.dev/v1.0/guides/configuring-network-connectivity/)
+  * [Troubleshooting Control Plane](https://www.talos.dev/v1.0/guides/troubleshooting-control-plane/)
+  * [Support Matrix](https://www.talos.dev/v1.0/introduction/support-matrix/)
 * Linux
   * [Kernel Parameters Index](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.rst)
   * [Kernel Parameters List](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt)

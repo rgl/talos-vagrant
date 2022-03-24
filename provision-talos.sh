@@ -29,8 +29,8 @@ talosctl version --client
 
 #
 # install talos.
-# see https://www.talos.dev/docs/v1.0/bare-metal-platforms/matchbox/
-# see https://www.talos.dev/docs/v1.0/guides/vip/
+# see https://www.talos.dev/v1.0/bare-metal-platforms/matchbox/
+# see https://www.talos.dev/v1.0/guides/vip/
 # NB kubernetes_version refers to the kublet image, e.g., ghcr.io/siderolabs/kubelet:v1.23.4
 #    execute `talosctl images` to show the defaults.
 # NB this generates yaml file that will be interpreted by matchbox as Go
