@@ -157,6 +157,12 @@ kubectl api-resources -o wide
 title 'Kubernetes resources'
 kubectl get all --all-namespaces
 
+title 'Kubernetes running pods container images'
+kubectl get pods --all-namespaces -o jsonpath='{.items[*].spec.containers[*].image}' \
+    | tr -s '[[:space:]]' '\n' \
+    | sort \
+    | uniq
+
 
 #
 # show the environment summary.
