@@ -100,8 +100,8 @@ talosctl gen config \
     --dns-domain cluster.local \
     --kubernetes-version "$kubernetes_version" \
     --install-disk '{{.installDisk}}' \
-    --config-patch "$(cat config-patch.json)" \
-    --config-patch-control-plane "$(cat config-patch-controlplane.json)" \
+    --config-patch @config-patch.json \
+    --config-patch-control-plane @config-patch-controlplane.json \
     --with-docs=false \
     --with-examples=false \
     --with-cluster-discovery=false
