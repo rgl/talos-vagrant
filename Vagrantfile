@@ -3,6 +3,7 @@
 CONFIG_DNS_DOMAIN = 'talos.test'
 CONFIG_TALOS_VERSION = '1.0.0-beta.3' # see https://github.com/siderolabs/talos/releases and https://www.talos.dev/v1.0/introduction/support-matrix/
 CONFIG_KUBERNETES_VERSION = '1.23.5' # see https://github.com/siderolabs/kubelet/releases (and https://kubernetes.io/releases/)
+CONFIG_THEILA_VERSION = '0.2.0-alpha.0' # see https://github.com/siderolabs/theila/releases
 CONFIG_HELM_VERSION = 'v3.8.1' # see https://github.com/helm/helm/releases
 CONFIG_K9S_VERSION = 'v0.25.18' # see https://github.com/derailed/k9s/releases
 CONFIG_METALLB_CHART_VERSION = '2.6.9' # see https://artifacthub.io/packages/helm/bitnami/metallb
@@ -80,6 +81,7 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-helm.sh', args: [CONFIG_HELM_VERSION]
     config.vm.provision :shell, path: 'provision-k9s.sh', args: [CONFIG_K9S_VERSION]
     config.vm.provision :shell, path: 'provision-talos.sh', args: [CONFIG_TALOS_VERSION, CONFIG_KUBERNETES_VERSION, CONFIG_CONTROL_PLANE_VIP]
+    config.vm.provision :shell, path: 'provision-theila.sh', args: [CONFIG_THEILA_VERSION]
   end
 
   virtual_machines.each do |name, arch, firmware, ip, mac, bmc_type, bmc_ip, bmc_port, bmc_qmp_port|
