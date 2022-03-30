@@ -2,7 +2,7 @@
 source /vagrant/lib.sh
 
 
-theila_version="${1:-0.2.0-alpha.0}"; shift || true
+theila_version="${1:-0.2.0}"; shift || true
 
 
 # download.
