@@ -16,7 +16,7 @@ control_plane_ips="$(cat /vagrant/shared/machines.json | jq -r '.[] | select(.ro
 first_control_plane_ip="$(echo "$control_plane_ips" | head -1)"
 
 title 'Adding the first control plane endpoint to the talosctl local configuration'
-rm -rf ~/.talos /vagrant/shared/kubeconfig
+rm -rf ~/.talos/* /vagrant/shared/kubeconfig
 install -d -m 700 ~/.talos
 install -m 600 /vagrant/shared/talosconfig ~/.talos/config
 talosctl config endpoints $first_control_plane_ip
@@ -32,7 +32,7 @@ title 'Waiting for etcd to be ready'
 while [ -z "$(talosctl service etcd status 2>/dev/null | grep -E '^HEALTH\s+OK$')" ]; do sleep 3; done
 
 title 'Downloading Kubernetes config to ~/.kube/config'
-rm -rf ~/.kube
+rm -rf ~/.kube/*
 talosctl kubeconfig
 chmod 600 ~/.kube/config
 rm -rf /home/vagrant/.kube
