@@ -23,6 +23,7 @@ for asset in ${assets[@]}; do
 done
 wget -qO /usr/local/bin/talosctl "https://github.com/siderolabs/talos/releases/download/v$talos_version/talosctl-$(uname -s | tr "[:upper:]" "[:lower:]")-amd64"
 chmod +x /usr/local/bin/talosctl
+cp /usr/local/bin/talosctl /vagrant/shared
 talosctl completion bash >/usr/share/bash-completion/completions/talosctl
 talosctl version --client
 
@@ -109,8 +110,7 @@ talosctl validate --config controlplane.yaml --mode metal
 talosctl validate --config worker.yaml --mode metal
 install -m 644 controlplane.yaml /var/lib/matchbox/generic
 install -m 644 worker.yaml /var/lib/matchbox/generic
-install -d -m 700 ~/.talos
-install -m 600 talosconfig ~/.talos/config
+cp talosconfig /vagrant/shared/talosconfig
 popd
 
 
@@ -119,10 +119,3 @@ popd
 
 python3 /vagrant/machines.py
 systemctl restart dnsmasq
-
-
-#
-# copy the binaries and configuration to the host.
-
-cp /usr/local/bin/talosctl /vagrant/shared
-cp ~/.talos/config /vagrant/shared/talosconfig
