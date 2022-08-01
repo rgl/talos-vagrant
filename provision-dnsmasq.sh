@@ -90,14 +90,6 @@ EOF
 
 
 #
-# register the machines and start dnsmasq.
-
-mkdir -p /var/lib/matchbox/{assets,groups,profiles,ignition,cloud,generic}
-python3 /vagrant/machines.py
-systemctl restart dnsmasq
-
-
-#
 # re-configure docker to use the dnsmasq dns server.
 
 python3 <<EOF
@@ -112,18 +104,3 @@ with open('/etc/docker/daemon.json', 'w') as f:
     json.dump(config, f, indent=4)
 EOF
 systemctl restart docker
-
-
-#
-# install matchbox.
-# see https://github.com/poseidon/matchbox
-
-docker run \
-    -d \
-    --restart unless-stopped \
-    --name matchbox \
-    --net host \
-    -v /var/lib/matchbox:/var/lib/matchbox:Z \
-    quay.io/poseidon/matchbox:v0.9.0 \
-        -address=0.0.0.0:80 \
-        -log-level=debug
