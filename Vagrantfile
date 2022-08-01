@@ -71,7 +71,7 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-meshcommander.sh'
     config.vm.provision :shell, path: 'provision-pdns.sh', args: [CONFIG_PANDORA_IP]
     config.vm.provision :shell, path: 'provision-dnsmasq.sh', args: [CONFIG_PANDORA_IP, CONFIG_PANDORA_DHCP_RANGE, CONFIG_CONTROL_PLANE_VIP]
-    config.vm.provision :shell, path: 'provision-ipxe.sh', args: [CONFIG_PANDORA_IP]
+    config.vm.provision :shell, path: 'provision-ipxe.sh'
     config.vm.provision :shell, path: 'provision-rescue.sh'
     config.vm.provision :shell, path: 'provision-loki.sh'
     config.vm.provision :shell, path: 'provision-vector.sh'
