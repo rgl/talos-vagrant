@@ -25,6 +25,6 @@ docker run \
     --name matchbox \
     --net host \
     -v /var/lib/matchbox:/var/lib/matchbox:Z \
-    quay.io/poseidon/matchbox:v0.9.0 \
+    quay.io/poseidon/matchbox:v0.9.1 \
         -address=0.0.0.0:80 \
         -log-level=debug
