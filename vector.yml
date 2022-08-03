@@ -14,8 +14,9 @@ sinks:
     endpoint: http://localhost:3100
     labels:
       job: talos
-      host: "{{ __host }}"
-      service: "{{ talos-service }}"
+      host: '{{ __host }}'
+      service: '{{ "talos-service" }}'
+      level: '{{ "talos-level" }}'
     encoding:
       codec: json
       except_fields:
