@@ -7,6 +7,8 @@ talos_version="${1:-1.2.0-alpha.1}"; shift || true
 kubernetes_version="${1:-1.24.3}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
+registry_domain="$(hostname --fqdn)"
+registry_host="$registry_domain:5000"
 
 
 #
@@ -27,6 +29,15 @@ cp /usr/local/bin/talosctl /vagrant/shared
 talosctl completion bash >/usr/share/bash-completion/completions/talosctl
 talosctl version --client
 
+# copy all the images to the local registry.
+# see https://www.talos.dev/v1.2/advanced/air-gapped/
+# TODO --kubernetes-version "$kubernetes_version" is missing from talosctl images.
+#      see https://github.com/siderolabs/talos/issues/5308
+talosctl images | sort | while read source_image; do
+    destination_image="$registry_host/$(echo $source_image | sed -E 's,^[^/]+/,,g')"
+    crane copy --insecure "$source_image" "$destination_image"
+done
+crane catalog --insecure $registry_host
 
 #
 # install talos.
@@ -58,6 +69,28 @@ machine:
     destinations:
       - endpoint: tcp://$pandora_ip_address:5170
         format: json_lines
+  registries:
+    config:
+      $registry_host:
+        auth:
+          username: vagrant
+          password: vagrant
+    mirrors:
+      docker.io:
+        endpoints:
+          - http://$registry_host
+      gcr.io:
+        endpoints:
+          - http://$registry_host
+      ghcr.io:
+        endpoints:
+          - http://$registry_host
+      k8s.gcr.io:
+        endpoints:
+          - http://$registry_host
+      quay.io:
+        endpoints:
+          - http://$registry_host
 EOF
 cat >config-patch-controlplane.yaml <<EOF
 machine:

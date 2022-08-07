@@ -69,6 +69,8 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-iptables.sh'
     config.vm.provision :shell, path: 'provision-docker.sh'
     config.vm.provision :shell, path: 'provision-docker-hub-auth.sh', env: {'DOCKER_HUB_AUTH' => DOCKER_HUB_AUTH} if DOCKER_HUB_AUTH
+    config.vm.provision :shell, path: 'provision-registry.sh'
+    config.vm.provision :shell, path: 'provision-crane.sh'
     config.vm.provision :shell, path: 'provision-meshcommander.sh'
     config.vm.provision :shell, path: 'provision-pdns.sh', args: [CONFIG_PANDORA_IP]
     config.vm.provision :shell, path: 'provision-dnsmasq.sh', args: [CONFIG_PANDORA_IP, CONFIG_PANDORA_DHCP_RANGE, CONFIG_CONTROL_PLANE_VIP]
