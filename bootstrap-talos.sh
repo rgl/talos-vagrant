@@ -15,6 +15,38 @@ control_plane_vip="$(jq -r .CONFIG_CONTROL_PLANE_VIP /vagrant/shared/config.json
 control_plane_ips="$(cat /vagrant/shared/machines.json | jq -r '.[] | select(.role == "controlplane") | .ip')"
 first_control_plane_ip="$(echo "$control_plane_ips" | head -1)"
 
+function set-control-plane-dns-rr {
+    local ip_address="$1"
+    title 'Reconfiguring the Kubernetes control plane endpoint DNS A RR to the VIP'
+    # see https://doc.powerdns.com/authoritative/http-api
+    # see https://doc.powerdns.com/md/httpapi/api_spec/
+    http \
+        --print '' \
+        PATCH \
+        http://$pandora_ip_address:8081/api/v1/servers/localhost/zones/$dns_domain \
+        X-API-Key:vagrant \
+        rrsets:="$(cat <<EOF
+[
+    {
+        "name": "$control_plane_fqdn.",
+        "type": "A",
+        "changetype": "REPLACE",
+        "ttl": 0,
+        "records": [
+            {
+                "content": "$ip_address",
+                "disabled": false
+            }
+        ]
+    }
+]
+EOF
+)"
+    title "Waiting for DNS $control_plane_fqdn to resolve to $ip_address"
+    while [ "$(dig +short $control_plane_fqdn 2>/dev/null)" != "$ip_address" ]; do sleep 3; done
+    dig $control_plane_fqdn
+}
+
 title 'Adding the first control plane endpoint to the talosctl local configuration'
 rm -rf ~/.talos/* /vagrant/shared/kubeconfig
 install -d -m 700 ~/.talos
@@ -22,6 +54,8 @@ install -m 600 /vagrant/shared/talosconfig ~/.talos/config
 talosctl config endpoints $first_control_plane_ip
 talosctl config nodes $first_control_plane_ip
 
+# ensure the control plane DNS RR points to the first node.
+set-control-plane-dns-rr $first_control_plane_ip
 
 title 'Bootstrapping talos'
 while ! talosctl bootstrap; do sleep 10; done
@@ -51,33 +85,6 @@ cat /vagrant/shared/machines.json | jq -r '.[] | select(.type == "virtual") | .n
     while [ -z "$(kubectl get node "$name" 2>/dev/null | grep -E '\s+Ready\s+')" ]; do sleep 3; done
 done
 
-title 'Reconfiguring the Kubernetes control plane endpoint DNS A RR to the VIP'
-# see https://doc.powerdns.com/authoritative/http-api
-# see https://doc.powerdns.com/md/httpapi/api_spec/
-http \
-    --print '' \
-    PATCH \
-    http://$pandora_ip_address:8081/api/v1/servers/localhost/zones/$dns_domain \
-    X-API-Key:vagrant \
-    rrsets:="$(cat <<EOF
-[
-    {
-        "name": "cp.$dns_domain.",
-        "type": "A",
-        "changetype": "REPLACE",
-        "ttl": 0,
-        "records": [
-            {
-                "content": "$control_plane_vip",
-                "disabled": false
-            }
-        ]
-    }
-]
-EOF
-)"
-dig $control_plane_fqdn
-
 title 'Adding all the control plane endpoints to the talosctl local configuration'
 talosctl config endpoints $control_plane_ips
 talosctl config nodes # NB this makes sure there are no default nodes.
@@ -86,8 +93,13 @@ install -m 600 -o vagrant -g vagrant ~/.talos/config /home/vagrant/.talos/config
 cp ~/.talos/config /vagrant/shared/talosconfig
 
 title 'Copying Kubernetes config to the host'
-control_plane_vip="$(dig +short $control_plane_fqdn)"
 sed "s,$control_plane_fqdn,$control_plane_vip,g" ~/.kube/config >/vagrant/shared/kubeconfig
+
+title "Waiting for Kubernetes to be available at the $control_plane_vip VIP"
+while ! kubectl get deployments >/dev/null 2>&1; do sleep 3; done
+
+# ensure the control plane DNS RR points to the talos managed VIP.
+set-control-plane-dns-rr $control_plane_vip
 
 
 #
