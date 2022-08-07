@@ -26,22 +26,64 @@
   type: physical
 
 # disk devices:
-#   /dev/sda 240 GB SATA SSD
-- name: desk-mini
+#   /dev/sda 1000 GB SATA SSD
+- name: op1
   role: worker
   arch: amd64
   bmcType: amt
-  mac: ec:b1:d7:71:ff:f3
+  mac: 00:4e:01:9d:c7:ef
   hostNumber: 21
   type: physical
 
 # disk devices:
+#   /dev/sda 1000 GB SATA SSD
+#   /dev/sdb 120 GB SATA SSD
+- name: op2
+  role: worker
+  arch: amd64
+  bmcType: amt
+  mac: 00:4e:01:9d:cd:17
+  hostNumber: 22
+  type: physical
+
+# disk devices:
+#   /dev/sda 1000 GB SATA SSD
+#   /dev/sdb 120 GB SATA SSD
+- name: op3
+  role: worker
+  arch: amd64
+  bmcType: amt
+  mac: 00:4e:01:9d:aa:b6
+  hostNumber: 23
+  type: physical
+
+# disk devices:
+#   /dev/sda 1000 GB SATA SSD
+- name: dm1
+  role: worker
+  arch: amd64
+  bmcType: amt
+  mac: c4:65:16:ab:f9:59
+  hostNumber: 24
+  type: physical
+
+# disk devices:
+#   /dev/sda 1000 GB SATA SSD
+- name: dm2
+  role: worker
+  arch: amd64
+  bmcType: amt
+  mac: ec:b1:d7:71:ff:f3
+  hostNumber: 25
+  type: physical
+
+# disk devices:
 #   /dev/mmcblk0 16 GB SD Card (with rpi4-uefi-ipxe)
-#   /dev/sda     64 GB USB Flash
+#   /dev/sda 1000 GB USB SSD
 - name: rpi4-8gb
   role: worker
   arch: arm64
   mac: dc:a6:32:b0:ba:1d
-  hostNumber: 22
+  hostNumber: 26
   type: physical
   kexec: false
