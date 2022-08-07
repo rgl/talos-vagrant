@@ -1,5 +1,9 @@
 # see https://grafana.com/docs/loki/latest/configuration/examples/#complete-local-configyaml
 # see https://github.com/grafana/loki/blob/main/cmd/loki/loki-local-config.yaml
+
+analytics:
+  reporting_enabled: false
+
 auth_enabled: false
 
 server:
