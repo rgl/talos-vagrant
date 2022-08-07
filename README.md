@@ -184,6 +184,10 @@ This was tested on the following physical machines and boot modes:
   * `talosctl -n cp1 read /proc/cmdline | tr ' ' '\n'`
   * `talosctl -n cp1 read /proc/mounts | sort`
   * `talosctl -n cp1 read /etc/resolv.conf`
+  * `talosctl -n cp1 read /etc/containerd/config.toml`
+  * `talosctl -n cp1 read /etc/cri/containerd.toml`
+  * `talosctl -n cp1 read /etc/cri/conf.d/cri.toml` (registry credentials)
+  * `talosctl -n cp1 read /etc/cri/conf.d/hosts/docker.io/hosts.toml` (registry mirror)
 * Kubernetes
   * `kubectl get events --all-namespaces --watch`
   * `kubectl --namespace kube-system get events --watch`
