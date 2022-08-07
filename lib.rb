@@ -19,7 +19,7 @@ end
 
 def save_config
   FileUtils.mkdir_p 'shared'
-  File.write('shared/config.json', {
+  File.write('shared/config.json', JSON.pretty_generate({
     'CONFIG_PANDORA_IP': CONFIG_PANDORA_IP,
     'CONFIG_CONTROL_PLANE_VIP': CONFIG_CONTROL_PLANE_VIP,
     'CONFIG_PANDORA_LOAD_BALANCER_RANGE': CONFIG_PANDORA_LOAD_BALANCER_RANGE,
@@ -28,7 +28,7 @@ def save_config
     'CONFIG_CERT_MANAGER_CHART_VERSION': CONFIG_CERT_MANAGER_CHART_VERSION,
     'CONFIG_TRAEFIK_CHART_VERSION': CONFIG_TRAEFIK_CHART_VERSION,
     'CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION': CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION,
-  }.to_json)
+  }))
 end
 
 def save_virtual_machines_config
