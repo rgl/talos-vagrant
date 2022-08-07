@@ -1,16 +1,23 @@
 sources:
-  talos:
+  talos_source:
     type: socket
     mode: tcp
     address: 0.0.0.0:5170
     decoding:
       codec: json
     host_key: __host
+transforms:
+  talos_transform:
+    type: remap
+    inputs:
+      - talos_source
+    source: |
+      .timestamp = del(."talos-time")
 sinks:
   loki:
     type: loki
     inputs:
-      - talos
+      - talos_transform
     endpoint: http://localhost:3100
     labels:
       job: talos
