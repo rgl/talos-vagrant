@@ -177,8 +177,9 @@ This was tested on the following physical machines and boot modes:
   * `talosctl -n cp1 get services`
   * `talosctl -n cp1 get extensions`
   * `talosctl -n cp1 get addresses`
-  * `talosctl -n cp1 list -l /system`
-  * `talosctl -n cp1 list -l /var`
+  * `talosctl -n cp1 list -l -r -t f /etc`
+  * `talosctl -n cp1 list -l -r -t f /system`
+  * `talosctl -n cp1 list -l -r -t f /var`
   * `talosctl -n cp1 list -l /sys/fs/cgroup`
   * `talosctl -n cp1 read /proc/cmdline | tr ' ' '\n'`
   * `talosctl -n cp1 read /proc/mounts | sort`
