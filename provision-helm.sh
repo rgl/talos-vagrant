@@ -5,7 +5,7 @@ source /vagrant/lib.sh
 # deploy helm.
 
 # see https://github.com/helm/helm/releases
-helm_version="${1:-v3.8.1}"; shift || true
+helm_version="${1:-v3.9.2}"; shift || true
 
 # install helm.
 # see https://helm.sh/docs/intro/install/
@@ -19,6 +19,7 @@ case `uname -m` in
         ;;
 esac
 install helm /usr/local/bin
+rm helm
 
 # install the bash completion script.
 helm completion bash >/usr/share/bash-completion/completions/helm
