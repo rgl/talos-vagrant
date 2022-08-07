@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>0</y>
+      <w>660</w>
+      <h>1580</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;vm&gt;&gt;
+pandora
+10.3.0.2 pandora.talos.test</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>830</y>
+      <w>230</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;http service&gt;&gt;
+matchbox
+http://pandora.talos.test:80</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>840</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+r1=/ipxe?mac={mac}</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>940</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+r1=/generic?mac={mac}</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>990</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+r1=/assets/vmlinuz-{arch}</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>1040</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+r1=/assets/initramfs-{arch}.xz</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>910</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;file&gt;&gt;
+controlplane.yaml</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>980</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;file&gt;&gt;
+worker.yaml</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>80</y>
+      <w>230</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dhcp service&gt;&gt;
+dnsmasq
+udp://pandora.talos.test:67</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>160</y>
+      <w>190</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;file&gt;&gt;
+{type}-machines.conf
+--
+{mac},{ip},{hostname}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>90</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>400</y>
+      <w>230</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dns service&gt;&gt;
+dnsmasq
+udp://pandora.talos.test:53</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>480</y>
+      <w>190</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;file&gt;&gt;
+{type}-machines.conf
+--
+{mac},{ip},{hostname}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>410</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1480</x>
+      <y>520</y>
+      <w>230</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dns service&gt;&gt;
+powerdns
+udp://127.0.0.2:53</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1410</x>
+      <y>530</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1500</x>
+      <y>610</y>
+      <w>190</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dns zone&gt;&gt;
+talos.test</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1330</x>
+      <y>530</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>610</y>
+      <w>230</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;http service&gt;&gt;
+powerdns
+http://pandora.talos.test:8081</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>620</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1330</x>
+      <y>630</y>
+      <w>170</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>0</y>
+      <w>250</w>
+      <h>1220</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;vm&gt;&gt;
+cp1
+10.3.0.100 cp1
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>130</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;70.0;70.0;80.0;100.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>430</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;390.0;70.0;400.0;110.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>760</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;720.0;70.0;730.0;110.0;730.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>910</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;870.0;70.0;880.0;110.0;880.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>960</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;920.0;70.0;930.0;110.0;930.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>1010</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;970.0;70.0;980.0;110.0;980.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>580</y>
+      <w>190</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+kube-apiserver
+https://cp.talos.test:6443</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>900</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+metallb</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>1220</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;http service&gt;&gt;
+vector
+http://pandora.talos.test:5170</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>960</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+external-dns</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>1020</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+cert-manager</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>1080</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+traefik</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>1140</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+kubernetes-dashboard</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1480</x>
+      <y>1220</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;http service&gt;&gt;
+loki
+http://pandora.talos.test:3100</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>1230</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>1060</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;1020.0;70.0;1030.0;110.0;1030.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1410</x>
+      <y>1230</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1330</x>
+      <y>1230</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>1490</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;http service&gt;&gt;
+grafana
+http://pandora.talos.test:3000</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1330</x>
+      <y>1230</y>
+      <w>100</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;290.0;30.0;290.0;40.0;280.0;40.0;30.0;50.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>1500</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>460</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+etcd</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>640</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;600.0;70.0;610.0;110.0;610.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>590</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>720</y>
+      <w>230</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;ntp service&gt;&gt;
+chrony
+udp://10.3.0.2:123</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>740</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>860</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;820.0;70.0;830.0;110.0;830.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>290</y>
+      <w>230</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;tftp service&gt;&gt;
+dnsmasq
+udp://pandora.talos.test:69</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>520</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+kubelet</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>340</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+containerd</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>80</y>
+      <w>190</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+apid
+https://10.3.0.100:50000</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>160</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+machined</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>400</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+cri</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>220</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+trustd</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>280</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+udevd</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>250</x>
+      <y>570</y>
+      <w>80</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>kubectl</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>590</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-(</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>1090</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>250</x>
+      <y>1070</y>
+      <w>80</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>web
+browser</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>1090</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-(</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>300</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>130</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;280.0;70.0;290.0;100.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>890</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+r1=/metadata?mac={mac}</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>1150</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;1110.0;70.0;1120.0;110.0;1120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>90</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>90</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-(</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>250</x>
+      <y>70</y>
+      <w>80</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>talosctl</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>1320</y>
+      <w>230</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;http service&gt;&gt;
+machinator
+http://pandora.talos.test:8000</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>1330</y>
+      <w>320</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+</panel_attributes>
+    <additional_attributes>20.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>1320</y>
+      <w>190</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;docker container&gt;&gt;
+&lt;&lt;service&gt;&gt;
+cp1 ipmi emulator
+udp://10.3.0.1:5000</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>1410</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>1330</y>
+      <w>170</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>1210</y>
+      <w>90</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+&lt;&lt;control&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>1100</y>
+      <w>520</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=-(</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;10.0;40.0;20.0;40.0;320.0;50.0;330.0;490.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>1150</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>1100</y>
+      <w>100</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-(</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;10.0;40.0;20.0;40.0;60.0;50.0;70.0;70.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>1100</y>
+      <w>520</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>lt=-(</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;10.0;40.0;20.0;40.0;410.0;50.0;420.0;490.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>660</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+kube-scheduler</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>780</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+kube-dns</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>840</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+kube-proxy</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>720</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+kube-controller-manager</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>1120</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;http service&gt;&gt;
+registry
+http://pandora.talos.test:5000</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>140</w>
+      <h>1250</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;1210.0;70.0;1220.0;110.0;1220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>1130</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+</diagram>

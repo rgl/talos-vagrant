@@ -4,6 +4,7 @@ For playing with [Sidero](https://www.sidero.dev) see the [rgl/sidero-vagrant](h
 
 # Table Of Contents
 
+* [Architecture](#architecture)
 * [Usage](#usage)
 * [Network Packet Capture](#network-packet-capture)
 * [Network Booting](#network-booting)
@@ -11,6 +12,10 @@ For playing with [Sidero](https://www.sidero.dev) see the [rgl/sidero-vagrant](h
 * [Troubleshoot](#troubleshoot)
 * [Alternatives and Related Projects](#alternatives-and-related-projects)
 * [References](#references)
+
+# Architecture
+
+![](architecture.png)
 
 # Usage
 
@@ -208,6 +213,7 @@ This was tested on the following physical machines and boot modes:
 * Talos
   * [Talos Site](https://www.talos.dev/)
   * [Getting Started](https://www.talos.dev/v1.2/introduction/getting-started/)
+  * [Talos Components](https://www.talos.dev/v1.2/learn-more/components/)
   * [Configuring Network Connectivity](https://www.talos.dev/v1.2/learn-more/talos-network-connectivity/)
   * [Troubleshooting Control Plane](https://www.talos.dev/v1.2/advanced/troubleshooting-control-plane/)
   * [Support Matrix](https://www.talos.dev/v1.2/introduction/support-matrix/)
