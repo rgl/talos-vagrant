@@ -2,34 +2,52 @@
 source /vagrant/lib.sh
 
 # metallb chart.
-# see https://artifacthub.io/packages/helm/bitnami/metallb
+# see https://github.com/metallb/metallb/releases
+# see https://github.com/metallb/metallb/tree/v0.13.4/charts/metallb
+# see https://metallb.universe.tf/installation/#installation-with-helm
 # see https://metallb.universe.tf/configuration/#layer-2-configuration
-# see https://github.com/bitnami/charts/tree/master/bitnami/metallb
-metallb_chart_version="${1:-2.6.9}"; shift || true
+metallb_chart_version="${1:-0.13.4}"; shift || true
 metallb_ip_addresses="${1:-10.10.0.200-10.10.0.219}"; shift || true
 
-# add the gitlab helm charts repository.
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
+# add the metallb helm charts repository.
+helm repo add metallb https://metallb.github.io/metallb
 
 # search the chart and app versions, e.g.: in this case we are using:
 #     NAME             CHART VERSION  APP VERSION  DESCRIPTION
-#     bitnami/metallb  2.6.9          0.12.1       The Metal LB for Kubernetes
-helm search repo bitnami/metallb --versions | head -5
+#     metallb/metallb  0.13.4         v0.13.4      A network load-balancer implementation for Kube...
+helm search repo metallb/metallb --versions | head -5
+
+# create the namespace.
+# see https://github.com/metallb/metallb/blob/v0.13.4/config/native/ns.yaml
+# see https://github.com/metallb/metallb/issues/1457
+kubectl apply -f - <<'EOF'
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: metallb-system
+EOF
 
 # install.
 helm upgrade --install \
   metallb \
-  bitnami/metallb \
+  metallb/metallb \
   --version $metallb_chart_version \
-  --namespace metallb \
-  --create-namespace \
-  --values <(cat <<EOF
-configInline:
-  address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-        - $metallb_ip_addresses
+  --namespace metallb-system \
+  --wait
+
+# advertise addresses using the L2 mode.
+kubectl apply --namespace metallb-system -f - <<EOF
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: default
+spec:
+  addresses:
+    - $metallb_ip_addresses
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: default
 EOF
-)
