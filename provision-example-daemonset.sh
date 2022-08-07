@@ -92,10 +92,9 @@ spec:
       containers:
         # see https://github.com/rgl/example-docker-buildx-go
         - name: example-daemonset
-          image: ruilopes/example-docker-buildx-go:v1.5.0
+          image: ruilopes/example-docker-buildx-go:v1.10.0
           args:
-            - -listen
-            - 0.0.0.0:9000
+            - -listen=0.0.0.0:9000
           env:
             # see https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/
             # see https://github.com/kubernetes/kubernetes/blob/v1.23.5/test/e2e/common/node/downwardapi.go
