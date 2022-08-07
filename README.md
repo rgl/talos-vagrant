@@ -23,7 +23,7 @@ If you want to connect to the external physical network, you must configure your
 Bring up the cluster virtual machines:
 
 ```bash
-time ./bring-up.sh
+time ./bring-up.sh | tee bring-up.log
 ```
 
 Access talos:
