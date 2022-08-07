@@ -5,16 +5,16 @@ source /vagrant/lib.sh
 # see https://artifacthub.io/packages/helm/traefik/traefik
 # see https://github.com/traefik/traefik-helm-chart
 # see https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
-traefik_chart_version="${1:-10.15.0}"; shift || true
+traefik_chart_version="${1:-10.24.0}"; shift || true
 domain="$(hostname --domain)"
 
-# add the gitlab helm charts repository.
+# add the traefik helm charts repository.
 helm repo add traefik https://helm.traefik.io/traefik
 helm repo update
 
 # search the chart and app versions, e.g.: in this case we are using:
 #     NAME             CHART VERSION  APP VERSION  DESCRIPTION
-#     traefik/traefik  10.15.0         2.6.1        A Traefik based Kubernetes ingress controller
+#     traefik/traefik  10.24.0        2.8.0        A Traefik based Kubernetes ingress controller
 helm search repo traefik/traefik --versions | head -5
 
 # install.
