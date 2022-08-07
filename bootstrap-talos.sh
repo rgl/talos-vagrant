@@ -22,11 +22,9 @@ install -m 600 /vagrant/shared/talosconfig ~/.talos/config
 talosctl config endpoints $first_control_plane_ip
 talosctl config nodes $first_control_plane_ip
 
-title 'Waiting for kubelet to be ready'
-while [ -z "$(talosctl service kubelet status 2>/dev/null | grep -E '^HEALTH\s+OK$')" ]; do sleep 3; done
 
-title 'Bootstrapping etcd'
-talosctl bootstrap
+title 'Bootstrapping talos'
+while ! talosctl bootstrap; do sleep 10; done
 
 title 'Waiting for etcd to be ready'
 while [ -z "$(talosctl service etcd status 2>/dev/null | grep -E '^HEALTH\s+OK$')" ]; do sleep 3; done
@@ -41,7 +39,7 @@ install -m 600 -o vagrant -g vagrant ~/.kube/config /home/vagrant/.kube/config
 
 title 'Waiting for Kubernetes to be ready'
 # wait for the api server to be ready.
-while ! kubectl get ns >/dev/null 2>&1; do sleep 3; done
+while ! kubectl get deployments >/dev/null 2>&1; do sleep 3; done
 # wait for all the deployments to be rolled out.
 kubectl get deployments --all-namespaces -o json | jq -r '.items[].metadata | [.namespace,.name] | @tsv' | while read ns deployment_name; do
     kubectl -n "$ns" rollout status deployment "$deployment_name"
