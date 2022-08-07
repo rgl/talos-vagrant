@@ -28,5 +28,7 @@ sinks:
       codec: json
       except_fields:
         - __host
+        - '"talos-service"'
+        - '"talos-level"'
     batch:
       max_bytes: 1048576 # 1 MiB
