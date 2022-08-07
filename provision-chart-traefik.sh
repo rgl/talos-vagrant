@@ -69,6 +69,10 @@ pilot:
 # NB this should never be done at production.
 globalArguments:
   - --serverstransport.insecureskipverify=true
+securityContext:
+  allowPrivilegeEscalation: false
+  seccompProfile:
+    type: RuntimeDefault
 EOF
 )
 

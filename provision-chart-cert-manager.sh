@@ -20,11 +20,55 @@ kubectl apply -f "https://github.com/jetstack/cert-manager/releases/download/v$c
 title 'Installing cert-manager'
 helm upgrade --install \
   cert-manager \
+  jetstack/cert-manager \
   --namespace cert-manager \
   --version "$cert_manager_chart_version" \
   --create-namespace \
   --wait \
-  jetstack/cert-manager
+  --values <(cat <<EOF
+# TODO remove this after https://github.com/cert-manager/cert-manager/pull/5259 lands in a release.
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
+cainjector:
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+webhook:
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+startupapicheck:
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+EOF
+)
+
 kubectl apply -f - <<'EOF'
 ---
 # see https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.ClusterIssuer

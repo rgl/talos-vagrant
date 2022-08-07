@@ -1,4 +1,5 @@
-FROM node:16-alpine3.15
+# syntax=docker/dockerfile:1.4
+FROM node:16-alpine
 WORKDIR /app
 RUN npm install meshcommander@0.9.5-a
 EXPOSE 4000

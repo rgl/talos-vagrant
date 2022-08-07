@@ -10,7 +10,7 @@ control_plane_vip="$(jq -r .CONFIG_CONTROL_PLANE_VIP /vagrant/shared/config.json
 
 #
 # bootstrap etcd.
-# see https://www.talos.dev/v1.0/bare-metal-platforms/matchbox/#bootstrap-etcd
+# see https://www.talos.dev/v1.2/talos-guides/install/bare-metal-platforms/matchbox/#bootstrap-etcd
 
 control_plane_ips="$(cat /vagrant/shared/machines.json | jq -r '.[] | select(.role == "controlplane") | .ip')"
 first_control_plane_ip="$(echo "$control_plane_ips" | head -1)"
@@ -108,15 +108,25 @@ set-control-plane-dns-rr $control_plane_vip
 function get-config-value {
     jq -r ".$1" /vagrant/shared/config.json
 }
+
+title 'Provisioning metallb'
 bash /vagrant/provision-chart-metallb.sh \
     "$(get-config-value CONFIG_METALLB_CHART_VERSION)" \
     "$(get-config-value CONFIG_PANDORA_LOAD_BALANCER_RANGE)"
+
+title 'Provisioning external-dns'
 bash /vagrant/provision-chart-external-dns.sh \
     "$(get-config-value CONFIG_EXTERNAL_DNS_CHART_VERSION)"
+
+title 'Provisioning cert-manager'
 bash /vagrant/provision-chart-cert-manager.sh \
     "$(get-config-value CONFIG_CERT_MANAGER_CHART_VERSION)"
+
+title 'Provisioning traefik'
 bash /vagrant/provision-chart-traefik.sh \
     "$(get-config-value CONFIG_TRAEFIK_CHART_VERSION)"
+
+title 'Provisioning kubernetes-dashboard'
 bash /vagrant/provision-chart-kubernetes-dashboard.sh \
     "$(get-config-value CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION)"
 

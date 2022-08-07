@@ -3,8 +3,8 @@ source /vagrant/lib.sh
 
 
 dns_domain="$(hostname --domain)"
-talos_version="${1:-1.0.1}"; shift || true
-kubernetes_version="${1:-1.23.5}"; shift || true
+talos_version="${1:-1.2.0-alpha.1}"; shift || true
+kubernetes_version="${1:-1.24.3}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 
@@ -30,15 +30,16 @@ talosctl version --client
 
 #
 # install talos.
-# see https://www.talos.dev/v1.0/bare-metal-platforms/matchbox/
-# see https://www.talos.dev/v1.0/guides/vip/
-# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/siderolabs/kubelet:v1.23.5
+# see https://www.talos.dev/v1.2/talos-guides/install/bare-metal-platforms/matchbox/
+# see https://www.talos.dev/v1.2/talos-guides/network/vip/
+# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/siderolabs/kubelet:v1.24.3
 #    execute `talosctl images` to show the defaults.
 # NB this generates yaml file that will be interpreted by matchbox as Go
 #    templates. this means we can use matchbox metadata variables like
 #    `installDisk`. you can see the end result at, e.g.:
 #       http://10.3.0.2/generic?mac=08:00:27:00:00:00
 
+rm -rf talos
 mkdir -p talos
 pushd talos
 # NB wipe:true is too slow and wasteful for our use-case as it will zero the
@@ -47,50 +48,25 @@ pushd talos
 # NB the kernel.kexec_load_disabled sysctl cannot be set to 0. so we must do
 #    this with /machine/install/extraKernelArgs instead of using
 #    /machine/sysctls.
-cat >config-patch.json <<EOF
-[
-    {
-        "op": "replace",
-        "path": "/machine/install/wipe",
-        "value": false
-    },
-    {
-        "op": "replace",
-        "path": "/machine/install/extraKernelArgs",
-        "value": [
-            "{{if not .kexec}}sysctl.kernel.kexec_load_disabled=1{{end}}"
-        ]
-    },
-    {
-        "op": "replace",
-        "path": "/machine/logging",
-        "value": {
-            "destinations": [
-                {
-                    "endpoint": "tcp://$pandora_ip_address:5170",
-                    "format": "json_lines"
-                }
-            ]
-        }
-    }
-]
+cat >config-patch.yaml <<EOF
+machine:
+  install:
+    wipe: false
+    extraKernelArgs:
+      - '{{if not .kexec}}sysctl.kernel.kexec_load_disabled=1{{end}}'
+  logging:
+    destinations:
+      - endpoint: tcp://$pandora_ip_address:5170
+        format: json_lines
 EOF
-cat >config-patch-controlplane.json <<EOF
-[
-    {
-        "op": "add",
-        "path": "/machine/network/interfaces",
-        "value": [
-            {
-                "interface": "eth0",
-                "dhcp": true,
-                "vip": {
-                    "ip": "$control_plane_vip"
-                }
-            }
-        ]
-    }
-]
+cat >config-patch-controlplane.yaml <<EOF
+machine:
+  network:
+    interfaces:
+      - interface: eth0
+        dhcp: true
+        vip:
+          ip: $control_plane_vip
 EOF
 # NB CoreDNS will be authoritative dns server for the given dns-domain zone.
 #    it will not forward that zone unknown queries to the upstream dns server.
@@ -101,8 +77,8 @@ talosctl gen config \
     --dns-domain cluster.local \
     --kubernetes-version "$kubernetes_version" \
     --install-disk '{{.installDisk}}' \
-    --config-patch @config-patch.json \
-    --config-patch-control-plane @config-patch-controlplane.json \
+    --config-patch @config-patch.yaml \
+    --config-patch-control-plane @config-patch-controlplane.yaml \
     --with-docs=false \
     --with-examples=false \
     --with-cluster-discovery=false

@@ -38,5 +38,14 @@ pdns:
   apiUrl: http://pandora.$dns_domain
   apiPort: 8081
   apiKey: vagrant
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
 EOF
 )

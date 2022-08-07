@@ -31,7 +31,7 @@ spec:
     name: ingress
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/ingress/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#ingress-v1-networking-k8s-io
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#ingress-v1-networking-k8s-io
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -56,8 +56,8 @@ spec:
                   name: web
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#service-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#serviceport-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#service-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#serviceport-v1-core
 apiVersion: v1
 kind: Service
 metadata:
@@ -73,9 +73,9 @@ spec:
       targetPort: web
 ---
 # see https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#daemonset-v1-apps
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podtemplatespec-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#daemonset-v1-apps
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -98,7 +98,7 @@ spec:
             - -listen=0.0.0.0:9000
           env:
             # see https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/
-            # see https://github.com/kubernetes/kubernetes/blob/v1.23.5/test/e2e/common/node/downwardapi.go
+            # see https://github.com/kubernetes/kubernetes/blob/v1.24.3/test/e2e/common/node/downwardapi.go
             - name: EXAMPLE_NODE_NAME
               valueFrom:
                 fieldRef:
@@ -129,4 +129,13 @@ spec:
             limits:
               memory: 20Mi
               cpu: 0.1
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
 EOF

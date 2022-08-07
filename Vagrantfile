@@ -1,8 +1,9 @@
 # set the external dns zone used for ssh into the machines and ingress.
 # NB the cluster dns zone must be different than this zone.
 CONFIG_DNS_DOMAIN = 'talos.test'
-CONFIG_TALOS_VERSION = '1.0.1' # see https://github.com/siderolabs/talos/releases and https://www.talos.dev/v1.0/introduction/support-matrix/
-CONFIG_KUBERNETES_VERSION = '1.23.5' # see https://github.com/siderolabs/kubelet/releases (and https://kubernetes.io/releases/)
+CONFIG_PANDORA_FQDN = "pandora.#{CONFIG_DNS_DOMAIN}"
+CONFIG_TALOS_VERSION = '1.2.0-alpha.1' # see https://github.com/siderolabs/talos/releases and https://www.talos.dev/v1.2/introduction/support-matrix/
+CONFIG_KUBERNETES_VERSION = '1.24.3' # see https://github.com/siderolabs/kubelet/releases (and https://kubernetes.io/releases/)
 CONFIG_THEILA_VERSION = '0.2.1' # see https://github.com/siderolabs/theila/releases
 CONFIG_HELM_VERSION = 'v3.9.2' # see https://github.com/helm/helm/releases
 CONFIG_K9S_VERSION = 'v0.26.3' # see https://github.com/derailed/k9s/releases
@@ -37,8 +38,8 @@ Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu-20.04-amd64'
 
   config.vm.provider :libvirt do |lv, config|
-    lv.cpus = 2
-    #lv.cpu_mode = 'host-passthrough'
+    lv.cpus = 4
+    lv.cpu_mode = 'host-passthrough'
     #lv.nested = true
     lv.memory = 2*1024
     lv.keymap = 'pt'
@@ -50,7 +51,7 @@ Vagrant.configure('2') do |config|
       lv.cpus = 4
       lv.memory = 4*1024
     end
-    config.vm.hostname = "pandora.#{CONFIG_DNS_DOMAIN}"
+    config.vm.hostname = CONFIG_PANDORA_FQDN
     if CONFIG_PANDORA_BRIDGE_NAME
       config.vm.network :public_network,
         dev: CONFIG_PANDORA_BRIDGE_NAME,
