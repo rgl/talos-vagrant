@@ -1,7 +1,7 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
-cert_manager_chart_version="${1:-1.7.2}"; shift || true
+cert_manager_chart_version="${1:-1.9.1}"; shift || true
 
 # provision cert-manager.
 # NB YOU MUST INSTALL CERT-MANAGER TO THE cert-manager NAMESPACE. the CRDs have it hard-coded.
@@ -15,8 +15,11 @@ cert_manager_chart_version="${1:-1.7.2}"; shift || true
 # see https://cert-manager.io/docs/usage/ingress/
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
+title 'Installing cert-manager crds'
 kubectl apply -f "https://github.com/jetstack/cert-manager/releases/download/v$cert_manager_chart_version/cert-manager.crds.yaml"
-helm install cert-manager \
+title 'Installing cert-manager'
+helm upgrade --install \
+  cert-manager \
   --namespace cert-manager \
   --version "$cert_manager_chart_version" \
   --create-namespace \
