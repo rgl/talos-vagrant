@@ -89,6 +89,7 @@ spec:
       labels:
         app: example-daemonset
     spec:
+      enableServiceLinks: false
       containers:
         # see https://github.com/rgl/example-docker-buildx-go
         - name: example-daemonset
