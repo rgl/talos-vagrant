@@ -48,7 +48,7 @@ ingressRoute:
 logs:
   # set the logging level.
   general:
-    level: DEBUG
+    level: ERROR
   # enable the access logs.
   access:
     enabled: true
