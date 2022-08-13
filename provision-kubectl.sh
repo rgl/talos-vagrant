@@ -1,14 +1,13 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
-kubernetes_version="${1:-1.24.3}"; shift || true
+kubectl_version="${1:-1.25.0-beta.0}"; shift || true
 
-# see https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
-wget -qO /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-echo 'deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main' >/etc/apt/sources.list.d/kubernetes.list
-apt-get update
-kubectl_package_version="$(apt-cache madison kubectl | awk "/$kubernetes_version-/{print \$3}")"
-apt-get install -y "kubectl=$kubectl_package_version"
+url="https://dl.k8s.io/release/v$kubectl_version/bin/linux/amd64/kubectl"
+t="$(mktemp -q -d --suffix=.kubectl)"
+wget -qO "$t/kubectl" "$url"
+install -m 755 "$t/kubectl" /usr/local/bin/kubectl
+rm -rf "$t"
 kubectl completion bash >/usr/share/bash-completion/completions/kubectl
 kubectl version --client
-cp /usr/bin/kubectl /vagrant/shared
+cp /usr/local/bin/kubectl /vagrant/shared

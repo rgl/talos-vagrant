@@ -32,12 +32,19 @@ metadata:
 EOF
 
 # install.
+# TODO remove the --values when https://github.com/metallb/metallb/issues/1401 is done.
+#      also see the Caution note at https://kubernetes.io/docs/concepts/security/pod-security-policy/
 helm upgrade --install \
   metallb \
   metallb/metallb \
   --version $metallb_chart_version \
   --namespace metallb-system \
-  --wait
+  --wait \
+  --values <(cat <<EOF
+psp:
+  create: false
+EOF
+)
 
 # advertise addresses using the L2 mode.
 kubectl apply --namespace metallb-system -f - <<EOF

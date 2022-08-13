@@ -3,8 +3,7 @@ source /vagrant/lib.sh
 
 
 dns_domain="$(hostname --domain)"
-talos_version="${1:-1.2.0-alpha.1}"; shift || true
-kubernetes_version="${1:-1.24.3}"; shift || true
+talos_version="${1:-1.2.0-alpha.2}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 registry_domain="$(hostname --fqdn)"
@@ -31,8 +30,6 @@ talosctl version --client
 
 # copy all the images to the local registry.
 # see https://www.talos.dev/v1.2/advanced/air-gapped/
-# TODO --kubernetes-version "$kubernetes_version" is missing from talosctl images.
-#      see https://github.com/siderolabs/talos/issues/5308
 talosctl images | sort | while read source_image; do
     destination_image="$registry_host/$(echo $source_image | sed -E 's,^[^/]+/,,g')"
     crane copy --insecure "$source_image" "$destination_image"
@@ -43,8 +40,6 @@ crane catalog --insecure $registry_host
 # install talos.
 # see https://www.talos.dev/v1.2/talos-guides/install/bare-metal-platforms/matchbox/
 # see https://www.talos.dev/v1.2/talos-guides/network/vip/
-# NB kubernetes_version refers to the kublet image, e.g., ghcr.io/siderolabs/kubelet:v1.24.3
-#    execute `talosctl images` to show the defaults.
 # NB this generates yaml file that will be interpreted by matchbox as Go
 #    templates. this means we can use matchbox metadata variables like
 #    `installDisk`. you can see the end result at, e.g.:
@@ -88,6 +83,9 @@ machine:
       k8s.gcr.io:
         endpoints:
           - http://$registry_host
+      registry.k8s.io:
+        endpoints:
+          - http://$registry_host
       quay.io:
         endpoints:
           - http://$registry_host
@@ -108,7 +106,6 @@ talosctl gen config \
     talos \
     "https://cp.$dns_domain:6443" \
     --dns-domain cluster.local \
-    --kubernetes-version "$kubernetes_version" \
     --install-disk '{{.installDisk}}' \
     --config-patch @config-patch.yaml \
     --config-patch-control-plane @config-patch-controlplane.yaml \
