@@ -26,7 +26,7 @@ helm upgrade --install \
   --namespace external-dns \
   --create-namespace \
   --values <(cat <<EOF
-logLevel: debug
+logLevel: error
 interval: 30s
 sources:
   - ingress
