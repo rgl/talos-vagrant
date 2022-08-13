@@ -109,6 +109,11 @@ function get-config-value {
     jq -r ".$1" /vagrant/shared/config.json
 }
 
+title 'Provisioning vector'
+bash /vagrant/provision-chart-vector.sh \
+    "$(get-config-value CONFIG_VECTOR_CHART_VERSION)" \
+    "$pandora_ip_address"
+
 title 'Provisioning metallb'
 bash /vagrant/provision-chart-metallb.sh \
     "$(get-config-value CONFIG_METALLB_CHART_VERSION)" \
