@@ -98,7 +98,7 @@ spec:
             - -listen=0.0.0.0:9000
           env:
             # see https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/
-            # see https://github.com/kubernetes/kubernetes/blob/v1.24.3/test/e2e/common/node/downwardapi.go
+            # see https://github.com/kubernetes/kubernetes/blob/v1.25.0-rc.0/test/e2e/common/node/downwardapi.go
             - name: EXAMPLE_NODE_NAME
               valueFrom:
                 fieldRef:

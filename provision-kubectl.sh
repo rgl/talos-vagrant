@@ -1,7 +1,7 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
-kubectl_version="${1:-1.25.0-beta.0}"; shift || true
+kubectl_version="${1:-1.25.0-rc.0}"; shift || true
 
 url="https://dl.k8s.io/release/v$kubectl_version/bin/linux/amd64/kubectl"
 t="$(mktemp -q -d --suffix=.kubectl)"
