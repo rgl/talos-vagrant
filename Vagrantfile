@@ -3,7 +3,8 @@
 CONFIG_DNS_DOMAIN = 'talos.test'
 CONFIG_PANDORA_FQDN = "pandora.#{CONFIG_DNS_DOMAIN}"
 CONFIG_TALOS_VERSION = '1.2.0-beta.0' # see https://github.com/siderolabs/talos/releases and https://www.talos.dev/v1.2/introduction/support-matrix/
-CONFIG_KUBECTL_VERSION = '1.25.0-rc.0' # see https://kubernetes.io/releases/
+CONFIG_KUBERNETES_VERSION = '1.25.0-rc.0' # see https://github.com/siderolabs/kubelet/releases, https://kubernetes.io/releases/, and https://www.talos.dev/v1.2/introduction/support-matrix/
+CONFIG_KUBECTL_VERSION = CONFIG_KUBERNETES_VERSION # see https://kubernetes.io/releases/
 CONFIG_THEILA_VERSION = '0.2.1' # see https://github.com/siderolabs/theila/releases
 CONFIG_HELM_VERSION = 'v3.9.3' # see https://github.com/helm/helm/releases
 CONFIG_K9S_VERSION = 'v0.26.3' # see https://github.com/derailed/k9s/releases
@@ -85,7 +86,8 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-kubectl.sh', args: [CONFIG_KUBECTL_VERSION]
     config.vm.provision :shell, path: 'provision-helm.sh', args: [CONFIG_HELM_VERSION]
     config.vm.provision :shell, path: 'provision-k9s.sh', args: [CONFIG_K9S_VERSION]
-    config.vm.provision :shell, path: 'provision-talos.sh', args: [CONFIG_TALOS_VERSION, CONFIG_CONTROL_PLANE_VIP]
+    config.vm.provision :shell, path: 'provision-talos-poke.sh'
+    config.vm.provision :shell, path: 'provision-talos.sh', args: [CONFIG_TALOS_VERSION, CONFIG_KUBERNETES_VERSION, CONFIG_CONTROL_PLANE_VIP]
     config.vm.provision :shell, path: 'provision-theila.sh', args: [CONFIG_THEILA_VERSION]
   end
 

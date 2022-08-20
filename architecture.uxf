@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>890</x>
+      <x>840</x>
       <y>0</y>
-      <w>660</w>
-      <h>1690</h>
+      <w>640</w>
+      <h>1680</h>
     </coordinates>
     <panel_attributes>&lt;&lt;vm&gt;&gt;
 pandora
@@ -17,7 +17,7 @@ pandora
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>830</y>
       <w>230</w>
       <h>260</h>
@@ -30,7 +30,7 @@ http://pandora.talos.test:80</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>840</y>
       <w>320</w>
       <h>40</h>
@@ -42,7 +42,7 @@ r1=/ipxe?mac={mac}</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>940</y>
       <w>320</w>
       <h>40</h>
@@ -54,7 +54,7 @@ r1=/generic?mac={mac}</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>990</y>
       <w>320</w>
       <h>40</h>
@@ -66,7 +66,7 @@ r1=/assets/vmlinuz-{arch}</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>1040</y>
       <w>320</w>
       <h>40</h>
@@ -78,7 +78,7 @@ r1=/assets/initramfs-{arch}.xz</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
+      <x>880</x>
       <y>910</y>
       <w>190</w>
       <h>50</h>
@@ -90,7 +90,7 @@ controlplane.yaml</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
+      <x>880</x>
       <y>980</y>
       <w>190</w>
       <h>50</h>
@@ -102,7 +102,7 @@ worker.yaml</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>80</y>
       <w>230</w>
       <h>180</h>
@@ -115,7 +115,7 @@ udp://pandora.talos.test:67</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
+      <x>880</x>
       <y>160</y>
       <w>190</w>
       <h>80</h>
@@ -129,7 +129,7 @@ udp://pandora.talos.test:67</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
+      <x>550</x>
       <y>90</y>
       <w>330</w>
       <h>40</h>
@@ -141,7 +141,7 @@ udp://pandora.talos.test:67</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>400</y>
       <w>230</w>
       <h>180</h>
@@ -154,7 +154,7 @@ udp://pandora.talos.test:53</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
+      <x>880</x>
       <y>480</y>
       <w>190</w>
       <h>80</h>
@@ -168,7 +168,7 @@ udp://pandora.talos.test:53</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>410</y>
       <w>320</w>
       <h>40</h>
@@ -180,7 +180,7 @@ udp://pandora.talos.test:53</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1290</x>
+      <x>1230</x>
       <y>520</y>
       <w>230</w>
       <h>170</h>
@@ -193,7 +193,7 @@ udp://127.0.0.2:53</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1220</x>
+      <x>1160</x>
       <y>530</y>
       <w>90</w>
       <h>40</h>
@@ -205,7 +205,7 @@ udp://127.0.0.2:53</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1310</x>
+      <x>1250</x>
       <y>610</y>
       <w>190</w>
       <h>60</h>
@@ -217,7 +217,7 @@ talos.test</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1140</x>
+      <x>1080</x>
       <y>530</y>
       <w>100</w>
       <h>50</h>
@@ -229,7 +229,7 @@ talos.test</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>610</y>
       <w>230</w>
       <h>80</h>
@@ -242,7 +242,7 @@ http://pandora.talos.test:8081</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>620</y>
       <w>320</w>
       <h>40</h>
@@ -254,7 +254,7 @@ http://pandora.talos.test:8081</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1140</x>
+      <x>1080</x>
       <y>630</y>
       <w>170</w>
       <h>30</h>
@@ -265,10 +265,10 @@ http://pandora.talos.test:8081</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
+      <x>210</x>
       <y>0</y>
-      <w>250</w>
-      <h>1340</h>
+      <w>230</w>
+      <h>1390</h>
     </coordinates>
     <panel_attributes>&lt;&lt;vm&gt;&gt;
 cp1
@@ -279,80 +279,80 @@ cp1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>130</w>
+      <w>140</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;70.0;70.0;80.0;100.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;70.0;80.0;80.0;110.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>430</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;390.0;70.0;400.0;110.0;400.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;390.0;80.0;400.0;120.0;400.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>760</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;720.0;70.0;730.0;110.0;730.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;720.0;80.0;730.0;120.0;730.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>910</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;870.0;70.0;880.0;110.0;880.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;870.0;80.0;880.0;120.0;880.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>960</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;920.0;70.0;930.0;110.0;930.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;920.0;80.0;930.0;120.0;930.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>1010</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;970.0;70.0;980.0;110.0;980.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;970.0;80.0;980.0;120.0;980.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>580</y>
+      <x>230</x>
+      <y>640</y>
       <w>190</w>
       <h>70</h>
     </coordinates>
@@ -364,8 +364,8 @@ https://cp.talos.test:6443</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>1020</y>
+      <x>230</x>
+      <y>1080</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -376,7 +376,7 @@ metallb</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>1220</y>
       <w>230</w>
       <h>70</h>
@@ -389,8 +389,8 @@ http://pandora.talos.test:5170</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>1080</y>
+      <x>230</x>
+      <y>1140</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -401,8 +401,8 @@ external-dns</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>1140</y>
+      <x>230</x>
+      <y>1200</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -413,8 +413,8 @@ cert-manager</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>1200</y>
+      <x>230</x>
+      <y>1260</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -425,8 +425,8 @@ traefik</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>1260</y>
+      <x>230</x>
+      <y>1320</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -437,7 +437,7 @@ kubernetes-dashboard</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>1320</y>
       <w>230</w>
       <h>70</h>
@@ -450,7 +450,7 @@ http://pandora.talos.test:3100</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>1230</y>
       <w>320</w>
       <h>40</h>
@@ -462,19 +462,19 @@ http://pandora.talos.test:3100</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>1060</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;1020.0;70.0;1030.0;110.0;1030.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;1020.0;80.0;1030.0;120.0;1030.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1140</x>
+      <x>1080</x>
       <y>1330</y>
       <w>100</w>
       <h>40</h>
@@ -486,7 +486,7 @@ http://pandora.talos.test:3100</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1140</x>
+      <x>1080</x>
       <y>1240</y>
       <w>110</w>
       <h>120</h>
@@ -498,7 +498,7 @@ http://pandora.talos.test:3100</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>1590</y>
       <w>230</w>
       <h>70</h>
@@ -511,7 +511,7 @@ http://pandora.talos.test:3000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1140</x>
+      <x>1080</x>
       <y>1350</y>
       <w>110</w>
       <h>290</h>
@@ -523,7 +523,7 @@ http://pandora.talos.test:3000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>1600</y>
       <w>320</w>
       <h>40</h>
@@ -535,8 +535,8 @@ http://pandora.talos.test:3000</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>460</y>
+      <x>230</x>
+      <y>520</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -547,20 +547,20 @@ etcd</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>640</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;600.0;70.0;610.0;110.0;610.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;600.0;80.0;610.0;120.0;610.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>590</y>
+      <x>140</x>
+      <y>650</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
@@ -571,7 +571,7 @@ etcd</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>720</y>
       <w>230</w>
       <h>80</h>
@@ -584,7 +584,7 @@ udp://10.3.0.2:123</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>740</y>
       <w>320</w>
       <h>40</h>
@@ -596,19 +596,19 @@ udp://10.3.0.2:123</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>860</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;820.0;70.0;830.0;110.0;830.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;820.0;80.0;830.0;120.0;830.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>290</y>
       <w>230</w>
       <h>80</h>
@@ -621,8 +621,8 @@ udp://pandora.talos.test:69</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>520</y>
+      <x>230</x>
+      <y>580</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -633,19 +633,19 @@ kubelet</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
+      <x>230</x>
       <y>340</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>&lt;&lt;service&gt;&gt;
-containerd</panel_attributes>
+system containerd</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
+      <x>230</x>
       <y>80</y>
       <w>190</w>
       <h>70</h>
@@ -658,7 +658,7 @@ https://10.3.0.100:50000</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
+      <x>230</x>
       <y>160</y>
       <w>190</w>
       <h>50</h>
@@ -670,8 +670,8 @@ machined</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>400</y>
+      <x>230</x>
+      <y>460</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -682,7 +682,7 @@ cri</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
+      <x>230</x>
       <y>220</y>
       <w>190</w>
       <h>50</h>
@@ -694,7 +694,7 @@ trustd</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
+      <x>230</x>
       <y>280</y>
       <w>190</w>
       <h>50</h>
@@ -706,8 +706,8 @@ udevd</panel_attributes>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>60</x>
-      <y>570</y>
+      <x>0</x>
+      <y>630</y>
       <w>80</w>
       <h>110</h>
     </coordinates>
@@ -717,8 +717,8 @@ udevd</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>590</y>
+      <x>60</x>
+      <y>650</y>
       <w>100</w>
       <h>50</h>
     </coordinates>
@@ -728,8 +728,8 @@ udevd</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>1210</y>
+      <x>140</x>
+      <y>1270</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
@@ -740,8 +740,8 @@ udevd</panel_attributes>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>60</x>
-      <y>1190</y>
+      <x>0</x>
+      <y>1250</y>
       <w>80</w>
       <h>120</h>
     </coordinates>
@@ -752,8 +752,8 @@ browser</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>1210</y>
+      <x>60</x>
+      <y>1270</y>
       <w>100</w>
       <h>50</h>
     </coordinates>
@@ -763,7 +763,7 @@ browser</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
+      <x>550</x>
       <y>300</y>
       <w>330</w>
       <h>40</h>
@@ -775,19 +775,19 @@ browser</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>130</w>
+      <w>140</w>
       <h>320</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;280.0;70.0;290.0;100.0;290.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;280.0;80.0;290.0;110.0;290.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>890</y>
       <w>320</w>
       <h>40</h>
@@ -799,19 +799,19 @@ r1=/metadata?mac={mac}</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>1150</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;1110.0;70.0;1120.0;110.0;1120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;1110.0;80.0;1120.0;120.0;1120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
+      <x>140</x>
       <y>90</y>
       <w>110</w>
       <h>40</h>
@@ -823,7 +823,7 @@ r1=/metadata?mac={mac}</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
+      <x>60</x>
       <y>90</y>
       <w>100</w>
       <h>50</h>
@@ -834,7 +834,7 @@ r1=/metadata?mac={mac}</panel_attributes>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>60</x>
+      <x>0</x>
       <y>70</y>
       <w>80</w>
       <h>110</h>
@@ -845,7 +845,7 @@ r1=/metadata?mac={mac}</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>1420</y>
       <w>230</w>
       <h>140</h>
@@ -858,7 +858,7 @@ http://pandora.talos.test:8000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>1430</y>
       <w>320</w>
       <h>50</h>
@@ -870,7 +870,7 @@ http://pandora.talos.test:8000</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
+      <x>230</x>
       <y>1420</y>
       <w>190</w>
       <h>80</h>
@@ -884,7 +884,7 @@ udp://10.3.0.1:5000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>1510</y>
       <w>320</w>
       <h>40</h>
@@ -896,7 +896,7 @@ udp://10.3.0.1:5000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
+      <x>410</x>
       <y>1430</y>
       <w>170</w>
       <h>40</h>
@@ -908,31 +908,31 @@ udp://10.3.0.1:5000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>1330</y>
+      <x>320</x>
+      <y>1380</y>
       <w>90</w>
-      <h>110</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;control&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>1220</y>
+      <x>60</x>
+      <y>1280</y>
       <w>520</w>
-      <h>340</h>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=-(</panel_attributes>
-    <additional_attributes>10.0;10.0;30.0;10.0;40.0;20.0;40.0;300.0;50.0;310.0;490.0;310.0</additional_attributes>
+    <additional_attributes>10.0;10.0;30.0;10.0;40.0;20.0;40.0;240.0;50.0;250.0;490.0;250.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>1270</y>
+      <x>140</x>
+      <y>1330</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
@@ -943,8 +943,8 @@ udp://10.3.0.1:5000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>1220</y>
+      <x>60</x>
+      <y>1280</y>
       <w>100</w>
       <h>100</h>
     </coordinates>
@@ -954,19 +954,19 @@ udp://10.3.0.1:5000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>1220</y>
+      <x>60</x>
+      <y>1280</y>
       <w>520</w>
-      <h>430</h>
+      <h>370</h>
     </coordinates>
     <panel_attributes>lt=-(</panel_attributes>
-    <additional_attributes>10.0;10.0;30.0;10.0;40.0;20.0;40.0;390.0;50.0;400.0;490.0;400.0</additional_attributes>
+    <additional_attributes>10.0;10.0;30.0;10.0;40.0;20.0;40.0;330.0;50.0;340.0;490.0;340.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>660</y>
+      <x>230</x>
+      <y>720</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -977,8 +977,8 @@ kube-scheduler</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>780</y>
+      <x>230</x>
+      <y>840</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -989,8 +989,8 @@ kube-dns</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>840</y>
+      <x>230</x>
+      <y>900</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -1001,8 +1001,8 @@ kube-proxy</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>720</y>
+      <x>230</x>
+      <y>780</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -1013,7 +1013,7 @@ kube-controller-manager</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>860</x>
       <y>1120</y>
       <w>230</w>
       <h>70</h>
@@ -1026,19 +1026,19 @@ http://pandora.talos.test:5000</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>1250</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;1210.0;70.0;1220.0;110.0;1220.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;1210.0;80.0;1220.0;120.0;1220.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>1130</y>
       <w>320</w>
       <h>40</h>
@@ -1050,8 +1050,8 @@ http://pandora.talos.test:5000</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>900</y>
+      <x>230</x>
+      <y>960</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -1062,7 +1062,7 @@ kube-flannel</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
+      <x>560</x>
       <y>1330</y>
       <w>320</w>
       <h>40</h>
@@ -1074,25 +1074,37 @@ kube-flannel</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
+      <x>430</x>
       <y>30</y>
-      <w>140</w>
+      <w>150</w>
       <h>1350</h>
     </coordinates>
     <panel_attributes>lt=-(
 </panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;60.0;20.0;60.0;1310.0;70.0;1320.0;110.0;1320.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;70.0;20.0;70.0;1310.0;80.0;1320.0;120.0;1320.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>960</y>
+      <x>230</x>
+      <y>1020</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>&lt;&lt;service&gt;&gt;
 vector</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>230</x>
+      <y>400</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;service&gt;&gt;
+user containerd</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

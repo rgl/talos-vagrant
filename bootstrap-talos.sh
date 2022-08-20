@@ -196,6 +196,27 @@ kubectl get pods --all-namespaces -o jsonpath='{.items[*].spec.containers[*].ima
 
 
 #
+# show information about the container images.
+
+title 'Bootstrap container images'
+cat /vagrant/shared/talos-images.txt
+
+title 'Current container images'
+(
+    talos-poke cp1 images
+    talos-poke w1 images
+) \
+    | grep -v -E '/talos-poke:' \
+    | grep -E '.+?/.+:.+' \
+    | sort --uniq \
+    >/vagrant/shared/images.txt
+cat /vagrant/shared/images.txt
+
+title 'Difference'
+diff -u /vagrant/shared/talos-images.txt /vagrant/shared/images.txt || true
+
+
+#
 # show the environment summary.
 
 bash /vagrant/summary.sh

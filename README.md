@@ -194,10 +194,13 @@ This was tested on the following physical machines and boot modes:
   * `talosctl -n cp1 read /etc/cri/containerd.toml`
   * `talosctl -n cp1 read /etc/cri/conf.d/cri.toml` (registry credentials)
   * `talosctl -n cp1 read /etc/cri/conf.d/hosts/docker.io/hosts.toml` (registry mirror)
+  * `talosctl -n cp1 ps`
+  * `talosctl -n cp1 containers -k`
+  * `talos-poke cp1`
 * Kubernetes
   * `kubectl get events --all-namespaces --watch`
   * `kubectl --namespace kube-system get events --watch`
-  * `kubectl run -it --rm --restart=Never busybox --image=busybox:1.33 -- nslookup -type=a pandora.talos.test`
+  * `kubectl run busybox -it --rm --restart=Never --image=busybox:1.33 -- nslookup -type=a pandora.talos.test`
 
 # Alternatives and Related Projects
 
