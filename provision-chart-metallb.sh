@@ -47,7 +47,11 @@ EOF
 )
 
 # advertise addresses using the L2 mode.
-kubectl apply --namespace metallb-system -f - <<EOF
+# NB we have to sit in a loop until the metallb-webhook-service endpoint is
+#    available. while its starting, it will fail with:
+#       Error from server (InternalError): error when creating "STDIN": Internal error occurred: failed calling webhook "ipaddresspoolvalidationwebhook.metallb.io": failed to call webhook: Post "https://metallb-webhook-service.cluster-metallb.svc:443/validate-metallb-io-v1beta1-ipaddresspool?timeout=10s": dial tcp 10.103.0.220:443: connect: connection refused
+#    see https://github.com/metallb/metallb/issues/1547
+while ! kubectl apply --namespace metallb-system -f - <<EOF
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -62,3 +66,4 @@ kind: L2Advertisement
 metadata:
   name: default
 EOF
+do sleep 5; done
