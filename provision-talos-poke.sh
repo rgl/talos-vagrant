@@ -22,7 +22,7 @@ registry_host="$registry_domain:5000"
 kubectl -n kube-system delete --grace-period=0 --force pod/talos-poke 2>&1 | grep -v NotFound || true
 
 kubectl -n kube-system apply -f - <<EOF
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#pod-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#pod-v1-core
 apiVersion: v1
 kind: Pod
 metadata:
