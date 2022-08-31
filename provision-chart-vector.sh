@@ -5,7 +5,7 @@ source /vagrant/lib.sh
 # see https://artifacthub.io/packages/helm/vector/vector
 # see https://github.com/vectordotdev/helm-charts
 # see https://vector.dev/docs/setup/installation/package-managers/helm/
-vector_chart_version="${1:-0.15.1}"; shift || true
+vector_chart_version="${1:-0.16.0}"; shift || true
 pandora_ip_address="${1:-10.10.0.2}"; shift || true
 
 # add the vector helm charts repository.
@@ -13,8 +13,8 @@ helm repo add vector https://helm.vector.dev
 helm repo update
 
 # search the chart and app versions, e.g.: in this case we are using:
-#   NAME           CHART VERSION  APP VERSION             DESCRIPTION                                       
-#   vector/vector  0.15.1         0.23.3-distroless-libc  A lightweight, ultra-fast tool for building obs...
+#   NAME           CHART VERSION  APP VERSION             DESCRIPTION
+#   vector/vector  0.16.0         0.24.0-distroless-libc  A lightweight, ultra-fast tool for building obs...
 helm search repo vector/vector --versions | head -5
 
 # install.
