@@ -3,10 +3,10 @@ source /vagrant/lib.sh
 
 # metallb chart.
 # see https://github.com/metallb/metallb/releases
-# see https://github.com/metallb/metallb/tree/v0.13.4/charts/metallb
+# see https://github.com/metallb/metallb/tree/v0.13.5/charts/metallb
 # see https://metallb.universe.tf/installation/#installation-with-helm
 # see https://metallb.universe.tf/configuration/#layer-2-configuration
-metallb_chart_version="${1:-0.13.4}"; shift || true
+metallb_chart_version="${1:-0.13.5}"; shift || true
 metallb_ip_addresses="${1:-10.10.0.200-10.10.0.219}"; shift || true
 
 # add the metallb helm charts repository.
@@ -14,11 +14,11 @@ helm repo add metallb https://metallb.github.io/metallb
 
 # search the chart and app versions, e.g.: in this case we are using:
 #     NAME             CHART VERSION  APP VERSION  DESCRIPTION
-#     metallb/metallb  0.13.4         v0.13.4      A network load-balancer implementation for Kube...
+#     metallb/metallb  0.13.5         v0.13.5      A network load-balancer implementation for Kube...
 helm search repo metallb/metallb --versions | head -5
 
 # create the namespace.
-# see https://github.com/metallb/metallb/blob/v0.13.4/config/native/ns.yaml
+# see https://github.com/metallb/metallb/blob/v0.13.5/config/native/ns.yaml
 # see https://github.com/metallb/metallb/issues/1457
 kubectl apply -f - <<'EOF'
 apiVersion: v1
@@ -32,19 +32,12 @@ metadata:
 EOF
 
 # install.
-# TODO remove the --values when https://github.com/metallb/metallb/issues/1401 is done.
-#      also see the Caution note at https://kubernetes.io/docs/concepts/security/pod-security-policy/
 helm upgrade --install \
   metallb \
   metallb/metallb \
   --version $metallb_chart_version \
   --namespace metallb-system \
-  --wait \
-  --values <(cat <<EOF
-psp:
-  create: false
-EOF
-)
+  --wait
 
 # advertise addresses using the L2 mode.
 # NB we have to sit in a loop until the metallb-webhook-service endpoint is
