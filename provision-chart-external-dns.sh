@@ -6,7 +6,7 @@ source /vagrant/lib.sh
 # see https://github.com/bitnami/charts/tree/master/bitnami/external-dns
 # see https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/pdns.md
 # see https://github.com/kubernetes-sigs/external-dns/blob/master/docs/initial-design.md
-external_dns_chart_version="${1:-6.7.5}"; shift || true
+external_dns_chart_version="${1:-6.8.1}"; shift || true
 dns_domain="$(hostname --domain)"
 
 # add the bitnami helm charts repository.
@@ -15,7 +15,7 @@ helm repo update
 
 # search the chart and app versions, e.g.: in this case we are using:
 #     NAME                  CHART VERSION  APP VERSION  DESCRIPTION
-#     bitnami/external-dns  6.7.5          0.12.2      	ExternalDNS is a Kubernetes addon that configur...
+#     bitnami/external-dns  6.8.1          0.12.2      	ExternalDNS is a Kubernetes addon that configur...
 helm search repo bitnami/external-dns --versions | head -5
 
 # install.
