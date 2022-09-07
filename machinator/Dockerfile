@@ -10,7 +10,7 @@ RUN CGO_ENABLED=0 go build -ldflags="-s"
 FROM debian:bullseye-slim
 RUN apt-get update && apt-get install -y ipmitool && rm -rf /var/lib/apt/lists/*
 ADD --chmod=755 https://dl.k8s.io/release/v1.25.0/bin/linux/amd64/kubectl /usr/local/bin/kubectl
-ADD --chmod=755 https://github.com/siderolabs/talos/releases/download/v1.2.0/talosctl-linux-amd64 /usr/local/bin/talosctl
+ADD --chmod=755 https://github.com/siderolabs/talos/releases/download/v1.2.1/talosctl-linux-amd64 /usr/local/bin/talosctl
 COPY --from=builder /app/machinator .
 EXPOSE 8000
 ENTRYPOINT ["/machinator"]

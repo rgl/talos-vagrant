@@ -2,7 +2,7 @@
 # NB the cluster dns zone must be different than this zone.
 CONFIG_DNS_DOMAIN = 'talos.test'
 CONFIG_PANDORA_FQDN = "pandora.#{CONFIG_DNS_DOMAIN}"
-CONFIG_TALOS_VERSION = '1.2.0' # see https://github.com/siderolabs/talos/releases and https://www.talos.dev/v1.2/introduction/support-matrix/
+CONFIG_TALOS_VERSION = '1.2.1' # see https://github.com/siderolabs/talos/releases and https://www.talos.dev/v1.2/introduction/support-matrix/
 CONFIG_KUBERNETES_VERSION = '1.25.0' # see https://github.com/siderolabs/kubelet/releases, https://kubernetes.io/releases/, and https://www.talos.dev/v1.2/introduction/support-matrix/
 CONFIG_KUBECTL_VERSION = CONFIG_KUBERNETES_VERSION # see https://kubernetes.io/releases/
 CONFIG_THEILA_VERSION = '0.2.1' # see https://github.com/siderolabs/theila/releases
