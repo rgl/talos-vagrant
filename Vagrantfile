@@ -11,7 +11,7 @@ CONFIG_K9S_VERSION = 'v0.26.7' # see https://github.com/derailed/k9s/releases
 CONFIG_VECTOR_CHART_VERSION = '0.17.1' # see https://artifacthub.io/packages/helm/vector/vector
 CONFIG_METALLB_CHART_VERSION = '0.13.5' # see https://github.com/metallb/metallb/releases
 CONFIG_EXTERNAL_DNS_CHART_VERSION = '6.8.1' # see https://artifacthub.io/packages/helm/bitnami/external-dns
-CONFIG_CERT_MANAGER_CHART_VERSION = '1.9.1' # see https://artifacthub.io/packages/helm/cert-manager/cert-manager
+CONFIG_CERT_MANAGER_CHART_VERSION = '1.10.1' # see https://artifacthub.io/packages/helm/cert-manager/cert-manager
 CONFIG_TRAEFIK_CHART_VERSION = '10.24.3' # see https://artifacthub.io/packages/helm/traefik/traefik
 CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION = '5.10.0' # see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
 
