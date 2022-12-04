@@ -100,9 +100,6 @@ no-resolv
 bind-interfaces
 interface=lo
 listen-address=127.0.0.1
-# delegate the talos.test zone to the pandora DNS server IP address.
-# NB use the CONFIG_PANDORA_IP variable value defined in the Vagrantfile.
-server=/talos.test/10.10.0.2
 # delegate to the Cloudflare/APNIC Public DNS IP addresses.
 # NB iif there's no entry in /etc/hosts.
 server=1.1.1.1
@@ -111,6 +108,11 @@ server=1.0.0.1
 # NB iif there's no entry in /etc/hosts.
 #server=8.8.8.8
 #server=8.8.4.4
+EOF
+cat >/etc/dnsmasq.d/talos.test.conf <<EOF
+# delegate the talos.test zone to the pandora DNS server IP address.
+# NB use the CONFIG_PANDORA_IP variable value defined in the Vagrantfile.
+server=/talos.test/10.10.0.2
 EOF
 rm /etc/resolv.conf
 cat >/etc/resolv.conf <<EOF
