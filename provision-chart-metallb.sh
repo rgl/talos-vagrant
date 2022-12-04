@@ -3,10 +3,10 @@ source /vagrant/lib.sh
 
 # metallb chart.
 # see https://github.com/metallb/metallb/releases
-# see https://github.com/metallb/metallb/tree/v0.13.5/charts/metallb
+# see https://github.com/metallb/metallb/tree/v0.13.7/charts/metallb
 # see https://metallb.universe.tf/installation/#installation-with-helm
 # see https://metallb.universe.tf/configuration/#layer-2-configuration
-metallb_chart_version="${1:-0.13.5}"; shift || true
+metallb_chart_version="${1:-0.13.7}"; shift || true
 metallb_ip_addresses="${1:-10.10.0.200-10.10.0.219}"; shift || true
 
 # add the metallb helm charts repository.
@@ -14,11 +14,11 @@ helm repo add metallb https://metallb.github.io/metallb
 
 # search the chart and app versions, e.g.: in this case we are using:
 #     NAME             CHART VERSION  APP VERSION  DESCRIPTION
-#     metallb/metallb  0.13.5         v0.13.5      A network load-balancer implementation for Kube...
+#     metallb/metallb  0.13.7         v0.13.7      A network load-balancer implementation for Kube...
 helm search repo metallb/metallb --versions | head -5
 
 # create the namespace.
-# see https://github.com/metallb/metallb/blob/v0.13.5/config/native/ns.yaml
+# see https://github.com/metallb/metallb/blob/v0.13.7/config/native/ns.yaml
 # see https://github.com/metallb/metallb/issues/1457
 kubectl apply -f - <<'EOF'
 apiVersion: v1
