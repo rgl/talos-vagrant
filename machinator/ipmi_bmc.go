@@ -70,11 +70,26 @@ func ipmiBmcGetPowerState(machine *Machine) (string, error) {
 }
 
 func ipmiBmcReset(machine *Machine) error {
-	log.Printf("Forcing the system restart...")
-	_, err := ipmitool(machine, "chassis", "power", "reset")
+	powerState, err := ipmiBmcGetPowerState(machine)
 	if err != nil {
 		return err
 	}
+	log.Printf("Current System PowerState: %s", powerState)
+
+	if powerState == "off" {
+		log.Printf("Forcing the system on...")
+		_, err = ipmitool(machine, "chassis", "power", "on")
+		if err != nil {
+			return err
+		}
+	} else {
+		log.Printf("Forcing the system restart...")
+		_, err := ipmitool(machine, "chassis", "power", "reset")
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
