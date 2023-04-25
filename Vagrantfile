@@ -101,10 +101,14 @@ Vagrant.configure('2') do |config|
   end
 
   config.vm.define :pandora do |config|
-    config.vm.provider :libvirt do |lv|
+    config.vm.provider :libvirt do |lv, config|
       lv.cpus = 4
       lv.memory = 4*1024
       lv.machine_virtual_size = 16
+      # configure the vagrant synced folder.
+      lv.memorybacking :source, :type => 'memfd'  # required for virtiofs.
+      lv.memorybacking :access, :mode => 'shared' # required for virtiofs.
+      config.vm.synced_folder '.', '/vagrant', type: 'virtiofs'
     end
     config.vm.hostname = CONFIG_PANDORA_FQDN
     if CONFIG_PANDORA_BRIDGE_NAME
