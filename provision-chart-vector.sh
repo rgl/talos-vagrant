@@ -21,7 +21,7 @@ helm search repo vector/vector --versions | head -5
 # see https://vector.dev/docs/reference/configuration/sources/kubernetes_logs
 # NB in talos, the /var partition is ephemeral and will be erased at the next
 #    upgrade. this means the logs and the vector data_dir will be lost.
-#    see https://www.talos.dev/v1.2/learn-more/architecture/
+#    see https://www.talos.dev/v1.4/learn-more/architecture/
 kubectl apply -f - <<'EOF'
 apiVersion: v1
 kind: Namespace

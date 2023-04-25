@@ -178,11 +178,15 @@ This was tested on the following physical machines and boot modes:
 # Troubleshoot
 
 * Talos
-  * [Troubleshooting Control Plane](https://www.talos.dev/v1.2/advanced/troubleshooting-control-plane/)
+  * [Troubleshooting Control Plane](https://www.talos.dev/v1.4/advanced/troubleshooting-control-plane/)
+  * `talosctl -n cp1 service etcd status`
+  * `talosctl -n cp1 etcd members`
+  * `talosctl -n cp1 get members`
   * `talosctl -n cp1 dashboard`
   * `talosctl -n cp1 logs controller-runtime`
   * `talosctl -n cp1 logs kubelet`
   * `talosctl -n cp1 disks`
+  * `talosctl -n cp1 mounts`
   * `talosctl -n cp1 get resourcedefinitions`
   * `talosctl -n cp1 get machineconfigs -o yaml`
   * `talosctl -n cp1 get staticpods -o yaml`
@@ -225,11 +229,11 @@ This was tested on the following physical machines and boot modes:
 
 * Talos
   * [Talos Site](https://www.talos.dev/)
-  * [Getting Started](https://www.talos.dev/v1.2/introduction/getting-started/)
-  * [Talos Components](https://www.talos.dev/v1.2/learn-more/components/)
-  * [Configuring Network Connectivity](https://www.talos.dev/v1.2/learn-more/talos-network-connectivity/)
-  * [Troubleshooting Control Plane](https://www.talos.dev/v1.2/advanced/troubleshooting-control-plane/)
-  * [Support Matrix](https://www.talos.dev/v1.2/introduction/support-matrix/)
+  * [Getting Started](https://www.talos.dev/v1.4/introduction/getting-started/)
+  * [Talos Components](https://www.talos.dev/v1.4/learn-more/components/)
+  * [Configuring Network Connectivity](https://www.talos.dev/v1.4/learn-more/talos-network-connectivity/)
+  * [Troubleshooting Control Plane](https://www.talos.dev/v1.4/advanced/troubleshooting-control-plane/)
+  * [Support Matrix](https://www.talos.dev/v1.4/introduction/support-matrix/)
 * Linux
   * [Kernel Parameters Index](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.rst)
   * [Kernel Parameters List](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt)

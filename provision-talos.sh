@@ -3,8 +3,8 @@ source /vagrant/lib.sh
 
 
 dns_domain="$(hostname --domain)"
-talos_version="${1:-1.2.7}"; shift || true
-kubernetes_version="${1:-1.25.4}"; shift || true
+talos_version="${1:-1.4.0}"; shift || true
+kubernetes_version="${1:-1.26.4}"; shift || true
 control_plane_vip="${1:-10.10.0.3}"; shift || true
 pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 registry_domain="$(hostname --fqdn)"
@@ -32,8 +32,8 @@ talosctl version --client
 
 #
 # install talos.
-# see https://www.talos.dev/v1.2/talos-guides/install/bare-metal-platforms/matchbox/
-# see https://www.talos.dev/v1.2/talos-guides/network/vip/
+# see https://www.talos.dev/v1.4/talos-guides/install/bare-metal-platforms/matchbox/
+# see https://www.talos.dev/v1.4/talos-guides/network/vip/
 # NB this generates yaml file that will be interpreted by matchbox as Go
 #    templates. this means we can use matchbox metadata variables like
 #    `installDisk`. you can see the end result at, e.g.:
@@ -120,13 +120,13 @@ popd
 
 #
 # copy all the images to the local registry.
-# see https://www.talos.dev/v1.2/advanced/air-gapped/
+# see https://www.talos.dev/v1.4/advanced/air-gapped/
 # NB --kubernetes-version "$kubernetes_version" is missing from the
 #    talosctl images command and it seems there is no chance for it to exist
 #    in the future, so we have to infer the images ourselves.
 #    see https://github.com/siderolabs/talos/issues/5308
 # NB kubernetes_version will refer to the kublet and related images, e.g.:
-#       ghcr.io/siderolabs/kubelet:v1.25.4
+#       ghcr.io/siderolabs/kubelet:v1.26.4
 #    see https://github.com/siderolabs/kubelet/releases
 python3 <<'EOF' | sort --unique >/vagrant/shared/talos-images.txt 
 import glob
