@@ -57,6 +57,13 @@ Access the example service:
 vagrant ssh -c "watch -n .2 'wget -qO- http://example-daemonset.\$(hostname --domain)?format=text | tail -25; kubectl get pod -l app=example-daemonset -o=custom-columns=NODE:.spec.nodeName,STATUS:.status.phase,NAME:.metadata.name'" pandora
 ```
 
+List this repository dependencies (and which have newer versions):
+
+```bash
+export GITHUB_COM_TOKEN='YOUR_GITHUB_PERSONAL_TOKEN'
+./renovate.sh
+```
+
 ## Network Packet Capture
 
 You can easily capture and see traffic from the host with the `wireshark.sh`
