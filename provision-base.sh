@@ -105,3 +105,6 @@ apt-get install -y p7zip-full
 # magic packet to its ethernet card.
 # e.g. etherwake -i eth1 00:e0:4c:01:93:a8
 apt-get install -y etherwake
+
+# arp-scan lets us discover nodes in the local network.
+apt-get install -y arp-scan
