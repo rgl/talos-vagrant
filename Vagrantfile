@@ -42,7 +42,7 @@ CONFIG_VECTOR_CHART_VERSION = '0.21.1'
 # see https://artifacthub.io/packages/helm/metallb/metallb
 # see https://github.com/metallb/metallb/releases
 # renovate: datasource=helm depName=metallb registryUrl=https://metallb.github.io/metallb
-CONFIG_METALLB_CHART_VERSION = '0.13.7'
+CONFIG_METALLB_CHART_VERSION = '0.13.9'
 
 # external-dns.
 # see https://artifacthub.io/packages/helm/bitnami/external-dns
