@@ -77,7 +77,7 @@ script, e.g., to capture the traffic from the `eth1` interface:
 
 To delegate the `talos.test` zone to the kubernetes managed external dns server (running in pandora) you need to configure your system to delegate that DNS zone to the pandora DNS server, for that, you can configure your system to only use dnsmasq.
 
-For example, on my Ubuntu 20.04 Desktop, I have uninstalled `resolvconf`, disabled `NetworkManager`, and manually configured the network interfaces:
+For example, on my Ubuntu 22.04 Desktop, I have uninstalled `resolvconf`, disabled `NetworkManager`, and manually configured the network interfaces:
 
 ```bash
 sudo su -l

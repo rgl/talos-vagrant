@@ -19,7 +19,7 @@ first_control_plane_ip="$((jq -r '.[] | select(.role == "controlplane") | .ip' |
 # see http://www.thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html
 # see https://wiki.archlinux.org/title/Dnsmasq
 
-default_dns_resolver="$(systemd-resolve --status | awk '/DNS Servers: /{print $3}')" # recurse queries through the default vagrant environment DNS server.
+default_dns_resolver="$(resolvectl | awk '/DNS Servers: /{print $3}')" # recurse queries through the default vagrant environment DNS server.
 apt-get install -y --no-install-recommends dnsmasq
 systemctl stop systemd-resolved
 systemctl disable systemd-resolved
