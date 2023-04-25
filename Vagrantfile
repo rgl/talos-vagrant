@@ -52,7 +52,7 @@ CONFIG_EXTERNAL_DNS_CHART_VERSION = '6.18.0'
 # cert-manager.
 # see https://artifacthub.io/packages/helm/cert-manager/cert-manager
 # renovate: datasource=helm depName=cert-manager registryUrl=https://charts.jetstack.io
-CONFIG_CERT_MANAGER_CHART_VERSION = '1.10.1'
+CONFIG_CERT_MANAGER_CHART_VERSION = '1.11.1'
 
 # traefik.
 # see https://artifacthub.io/packages/helm/traefik/traefik
