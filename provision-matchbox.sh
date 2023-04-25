@@ -4,7 +4,7 @@ source /vagrant/lib.sh
 
 # see https://github.com/poseidon/matchbox/releases
 # renovate: datasource=github-releases depName=poseidon/matchbox
-matchbox_version='0.9.1'
+matchbox_version='0.10.0'
 matchbox_image="quay.io/poseidon/matchbox:v$matchbox_version"
 
 
