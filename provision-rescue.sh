@@ -10,7 +10,7 @@ for rescue_arch in amd64 arm64; do
 
 # get the rescue from https://github.com/rgl/debian-live-builder-vagrant.
 # renovate: datasource=github-releases depName=rgl/debian-live-builder-vagrant
-rescue_version='20210714'
+rescue_version='20230407'
 rescue_url="https://github.com/rgl/debian-live-builder-vagrant/releases/download/v$rescue_version/debian-live-$rescue_version-$rescue_arch.iso"
 rescue_iso_path="/vagrant/shared/$(basename "$rescue_url")"
 if [ ! -f "$rescue_iso_path" ]; then
