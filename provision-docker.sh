@@ -3,7 +3,7 @@ source /vagrant/lib.sh
 
 
 # renovate: datasource=github-releases depName=moby/moby
-docker_version='20.10.21'
+docker_version='23.0.4'
 
 
 # prevent apt-get et al from asking questions.
@@ -17,11 +17,13 @@ apt-get update
 # install docker.
 # see https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
 apt-get install -y apt-transport-https software-properties-common
-wget -qO- https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+wget -qO- https://download.docker.com/linux/ubuntu/gpg \
+    | gpg --dearmor >/etc/apt/keyrings/download.docker.com.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/download.docker.com.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    >/etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list 
 apt-get update
 apt-cache madison docker-ce
-docker_apt_version="$(apt-cache madison docker-ce | awk "/$docker_version~/{print \$3}")"
+docker_apt_version="$(apt-cache madison docker-ce | awk "/:$docker_version[~-]/{print \$3}")"
 apt-get install -y "docker-ce=$docker_apt_version" "docker-ce-cli=$docker_apt_version" containerd.io
 
 # configure it.
