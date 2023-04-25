@@ -57,7 +57,7 @@ CONFIG_CERT_MANAGER_CHART_VERSION = '1.11.1'
 # traefik.
 # see https://artifacthub.io/packages/helm/traefik/traefik
 # renovate: datasource=helm depName=traefik registryUrl=https://helm.traefik.io/traefik
-CONFIG_TRAEFIK_CHART_VERSION = '20.5.3'
+CONFIG_TRAEFIK_CHART_VERSION = '22.3.0'
 
 # kubernetes-dashboard.
 # see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
