@@ -2,7 +2,7 @@
 source /vagrant/lib.sh
 
 # renovate: datasource=github-releases depName=rgl/rpi4-uefi-ipxe
-rpi4_uefi_ipxe_version='0.6.0'
+rpi4_uefi_ipxe_version='0.7.0'
 
 # install the amd64 architecture binaries.
 apt-get install --no-install-recommends -y ipxe
