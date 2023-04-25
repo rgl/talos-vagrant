@@ -47,7 +47,7 @@ CONFIG_METALLB_CHART_VERSION = '0.13.9'
 # external-dns.
 # see https://artifacthub.io/packages/helm/bitnami/external-dns
 # renovate: datasource=helm depName=external-dns registryUrl=https://charts.bitnami.com/bitnami
-CONFIG_EXTERNAL_DNS_CHART_VERSION = '6.12.1'
+CONFIG_EXTERNAL_DNS_CHART_VERSION = '6.18.0'
 
 # cert-manager.
 # see https://artifacthub.io/packages/helm/cert-manager/cert-manager
