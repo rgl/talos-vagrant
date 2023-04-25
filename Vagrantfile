@@ -18,6 +18,11 @@ CONFIG_KUBERNETES_VERSION = '1.26.4'
 # see https://kubernetes.io/releases/
 CONFIG_KUBECTL_VERSION = CONFIG_KUBERNETES_VERSION
 
+# etcdctl.
+# see https://github.com/etcd-io/etcd/releases
+# renovate: datasource=github-releases depName=etcd-io/etcd
+CONFIG_ETCDCTL_VERSION = '3.5.8'
+
 # theila.
 # see https://github.com/siderolabs/theila/releases
 # renovate: datasource=github-releases depName=siderolabs/theila
@@ -141,6 +146,7 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, path: 'provision-grafana.sh'
     config.vm.provision :shell, path: 'provision-machinator.sh'
     config.vm.provision :shell, path: 'provision-kubectl.sh', args: [CONFIG_KUBECTL_VERSION]
+    config.vm.provision :shell, path: 'provision-etcdctl.sh', args: [CONFIG_ETCDCTL_VERSION]
     config.vm.provision :shell, path: 'provision-helm.sh', args: [CONFIG_HELM_VERSION]
     config.vm.provision :shell, path: 'provision-k9s.sh', args: [CONFIG_K9S_VERSION]
     config.vm.provision :shell, path: 'provision-talos-poke.sh'

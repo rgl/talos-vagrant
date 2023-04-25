@@ -90,6 +90,21 @@ cp ~/.talos/config /vagrant/shared/talosconfig
 title 'Copying Kubernetes config to the host'
 sed "s,$control_plane_fqdn,$control_plane_vip,g" ~/.kube/config >/vagrant/shared/kubeconfig
 
+title 'Downloading etcd credentials to /etc/talos/etcd'
+rm -rf /etc/talos/etcd
+install -m 700 -d /etc/talos/etcd
+# TODO instead of using the kube-apiserver credentials, create new ones?
+talosctl -n $first_control_plane_ip read /system/secrets/etcd/ca.crt >/etc/talos/etcd/ca.crt
+talosctl -n $first_control_plane_ip read /system/secrets/kubernetes/kube-apiserver/etcd-client.crt >/etc/talos/etcd/client.crt
+talosctl -n $first_control_plane_ip read /system/secrets/kubernetes/kube-apiserver/etcd-client.key >/etc/talos/etcd/client.key
+ETCDCTL_ENDPOINTS="$(echo $controllers | tr ',' '\n' | while read ip; do echo "https://$ip:2379"; done | tr '\n' ',' | sed -E 's/,$//')"
+cat >/etc/profile.d/etcdctl.sh <<STDIN
+export ETCDCTL_CACERT=/etc/talos/etcd/ca.crt
+export ETCDCTL_CERT=/etc/talos/etcd/client.crt
+export ETCDCTL_KEY=/etc/talos/etcd/client.key
+export ETCDCTL_ENDPOINTS="$ETCDCTL_ENDPOINTS"
+STDIN
+source /etc/profile.d/etcdctl.sh
 
 
 #
@@ -146,6 +161,8 @@ talosctl -n $first_control_plane_ip disks
 
 title 'Talos etcd members'
 talosctl -n $first_control_plane_ip etcd members
+etcdctl --write-out table member list
+etcdctl --write-out table endpoint status
 
 title 'Talos services'
 talosctl -n $first_control_plane_ip services
