@@ -6,7 +6,7 @@ pandora_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 # see https://github.com/vectordotdev/vector/releases
 # see https://hub.docker.com/r/timberio/vector/
 # renovate: datasource=docker depName=timberio/vector
-vector_version="0.25.2"
+vector_version="0.29.1"
 
 # destroy the existing loki container and data.
 docker rm --force vector && rm -rf ~/vector && mkdir ~/vector
