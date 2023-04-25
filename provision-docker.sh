@@ -2,6 +2,7 @@
 source /vagrant/lib.sh
 
 
+# renovate: datasource=github-releases depName=moby/moby
 docker_version='20.10.21'
 
 

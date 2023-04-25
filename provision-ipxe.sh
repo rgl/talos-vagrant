@@ -1,6 +1,9 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
+# renovate: datasource=github-releases depName=rgl/rpi4-uefi-ipxe
+rpi4_uefi_ipxe_version='0.6.0'
+
 # install the amd64 architecture binaries.
 apt-get install --no-install-recommends -y ipxe
 install -m 644 /usr/lib/ipxe/undionly.kpxe /srv/pxe
@@ -10,7 +13,7 @@ install -m 644 /usr/lib/ipxe/ipxe.efi /var/lib/matchbox/assets
 
 # install the arm64 architecture binaries.
 # see https://github.com/rgl/rpi4-uefi-ipxe
-wget -q https://github.com/rgl/rpi4-uefi-ipxe/releases/download/v0.6.0/rpi4-uefi-ipxe.zip
+wget -q https://github.com/rgl/rpi4-uefi-ipxe/releases/download/v$rpi4_uefi_ipxe_version/rpi4-uefi-ipxe.zip
 unzip -d rpi4-uefi-ipxe rpi4-uefi-ipxe.zip
 pushd rpi4-uefi-ipxe
 install -m 644 efi/boot/bootaa64.efi /srv/pxe/ipxe-arm64.efi

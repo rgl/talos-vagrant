@@ -2,18 +2,67 @@
 # NB the cluster dns zone must be different than this zone.
 CONFIG_DNS_DOMAIN = 'talos.test'
 CONFIG_PANDORA_FQDN = "pandora.#{CONFIG_DNS_DOMAIN}"
-CONFIG_TALOS_VERSION = '1.2.7' # see https://github.com/siderolabs/talos/releases and https://www.talos.dev/v1.2/introduction/support-matrix/
-CONFIG_KUBERNETES_VERSION = '1.25.4' # see https://github.com/siderolabs/kubelet/releases, https://kubernetes.io/releases/, and https://www.talos.dev/v1.2/introduction/support-matrix/
-CONFIG_KUBECTL_VERSION = CONFIG_KUBERNETES_VERSION # see https://kubernetes.io/releases/
-CONFIG_THEILA_VERSION = '0.2.1' # see https://github.com/siderolabs/theila/releases
-CONFIG_HELM_VERSION = 'v3.10.2' # see https://github.com/helm/helm/releases
-CONFIG_K9S_VERSION = 'v0.26.7' # see https://github.com/derailed/k9s/releases
-CONFIG_VECTOR_CHART_VERSION = '0.17.1' # see https://artifacthub.io/packages/helm/vector/vector
-CONFIG_METALLB_CHART_VERSION = '0.13.7' # see https://github.com/metallb/metallb/releases
-CONFIG_EXTERNAL_DNS_CHART_VERSION = '6.12.1' # see https://artifacthub.io/packages/helm/bitnami/external-dns
-CONFIG_CERT_MANAGER_CHART_VERSION = '1.10.1' # see https://artifacthub.io/packages/helm/cert-manager/cert-manager
-CONFIG_TRAEFIK_CHART_VERSION = '20.5.3' # see https://artifacthub.io/packages/helm/traefik/traefik
-CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION = '6.0.0' # see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
+
+# talos.
+# see https://github.com/siderolabs/talos/releases
+# see https://www.talos.dev/v1.2/introduction/support-matrix/
+# renovate: datasource=github-releases depName=siderolabs/talos
+CONFIG_TALOS_VERSION = '1.2.7'
+
+# k8s.
+# see https://github.com/siderolabs/kubelet/releases
+# see https://kubernetes.io/releases/
+# see https://www.talos.dev/v1.2/introduction/support-matrix/
+# renovate: datasource=github-releases depName=siderolabs/kubelet
+CONFIG_KUBERNETES_VERSION = '1.25.4'
+# see https://kubernetes.io/releases/
+CONFIG_KUBECTL_VERSION = CONFIG_KUBERNETES_VERSION
+
+# theila.
+# see https://github.com/siderolabs/theila/releases
+# renovate: datasource=github-releases depName=siderolabs/theila
+CONFIG_THEILA_VERSION = '0.2.1'
+
+# helm.
+# see https://github.com/helm/helm/releases
+# renovate: datasource=github-releases depName=helm/helm
+CONFIG_HELM_VERSION = 'v3.10.2'
+
+# k9s.
+# see https://github.com/derailed/k9s/releases
+# renovate: datasource=github-releases depName=derailed/k9s
+CONFIG_K9S_VERSION = 'v0.26.7'
+
+# vector.
+# see https://artifacthub.io/packages/helm/vector/vector
+# renovate: datasource=helm depName=vector registryUrl=https://helm.vector.dev
+CONFIG_VECTOR_CHART_VERSION = '0.17.1'
+
+# metallb.
+# see https://artifacthub.io/packages/helm/metallb/metallb
+# see https://github.com/metallb/metallb/releases
+# renovate: datasource=helm depName=metallb registryUrl=https://metallb.github.io/metallb
+CONFIG_METALLB_CHART_VERSION = '0.13.7'
+
+# external-dns.
+# see https://artifacthub.io/packages/helm/bitnami/external-dns
+# renovate: datasource=helm depName=external-dns registryUrl=https://charts.bitnami.com/bitnami
+CONFIG_EXTERNAL_DNS_CHART_VERSION = '6.12.1'
+
+# cert-manager.
+# see https://artifacthub.io/packages/helm/cert-manager/cert-manager
+# renovate: datasource=helm depName=cert-manager registryUrl=https://charts.jetstack.io
+CONFIG_CERT_MANAGER_CHART_VERSION = '1.10.1'
+
+# traefik.
+# see https://artifacthub.io/packages/helm/traefik/traefik
+# renovate: datasource=helm depName=traefik registryUrl=https://helm.traefik.io/traefik
+CONFIG_TRAEFIK_CHART_VERSION = '20.5.3'
+
+# kubernetes-dashboard.
+# see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
+# renovate: datasource=helm depName=kubernetes-dashboard registryUrl=https://kubernetes.github.io/dashboard
+CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION = '6.0.0'
 
 CONFIG_PANDORA_BRIDGE_NAME = nil
 CONFIG_PANDORA_HOST_IP = '10.10.0.1'

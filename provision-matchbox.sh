@@ -2,6 +2,12 @@
 source /vagrant/lib.sh
 
 
+# see https://github.com/poseidon/matchbox/releases
+# renovate: datasource=github-releases depName=poseidon/matchbox
+matchbox_version='0.9.1'
+matchbox_image="quay.io/poseidon/matchbox:v$matchbox_version"
+
+
 #
 # register the machines.
 
@@ -17,7 +23,6 @@ systemctl restart dnsmasq
 
 #
 # install matchbox.
-# see https://github.com/poseidon/matchbox/releases
 
 docker run \
     -d \
@@ -25,6 +30,6 @@ docker run \
     --name matchbox \
     --net host \
     -v /var/lib/matchbox:/var/lib/matchbox:Z \
-    quay.io/poseidon/matchbox:v0.9.1 \
+    "$matchbox_image" \
         -address=0.0.0.0:80 \
         -log-level=info

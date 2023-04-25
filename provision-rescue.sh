@@ -9,7 +9,9 @@ machinator_base_url="http://$(hostname --fqdn):8000"
 for rescue_arch in amd64 arm64; do
 
 # get the rescue from https://github.com/rgl/debian-live-builder-vagrant.
-rescue_url="https://github.com/rgl/debian-live-builder-vagrant/releases/download/v20210714/debian-live-20210714-$rescue_arch.iso"
+# renovate: datasource=github-releases depName=rgl/debian-live-builder-vagrant
+rescue_version='20210714'
+rescue_url="https://github.com/rgl/debian-live-builder-vagrant/releases/download/v$rescue_version/debian-live-$rescue_version-$rescue_arch.iso"
 rescue_iso_path="/vagrant/shared/$(basename "$rescue_url")"
 if [ ! -f "$rescue_iso_path" ]; then
     title "downloading rescue from $rescue_url"

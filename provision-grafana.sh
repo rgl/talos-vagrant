@@ -5,6 +5,7 @@ loki_ip_address="$(jq -r .CONFIG_PANDORA_IP /vagrant/shared/config.json)"
 
 # see https://github.com/grafana/grafana/releases
 # see https://hub.docker.com/r/grafana/grafana/tags
+# renovate: datasource=docker depName=grafana/grafana
 grafana_version="9.3.1"
 
 mkdir -p grafana/datasources
