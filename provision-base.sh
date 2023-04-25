@@ -13,6 +13,20 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 
 
+#
+# expand the root partition.
+
+apt-get install -y --no-install-recommends parted
+partition_device="$(findmnt -no SOURCE /)"
+partition_number="$(echo "$partition_device" | perl -ne '/(\d+)$/ && print $1')"
+disk_device="$(echo "$partition_device" | perl -ne '/(.+?)\d+$/ && print $1')"
+parted ---pretend-input-tty "$disk_device" <<EOF
+resizepart $partition_number 100%
+yes
+EOF
+resize2fs "$partition_device"
+
+
 # enable systemd-journald persistent logs.
 sed -i -E 's,^#?(Storage=).*,\1persistent,' /etc/systemd/journald.conf
 systemctl restart systemd-journald

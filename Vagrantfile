@@ -94,6 +94,9 @@ Vagrant.configure('2') do |config|
     #lv.nested = true
     lv.memory = 2*1024
     lv.keymap = 'pt'
+    lv.disk_bus = 'scsi'
+    lv.disk_device = 'sda'
+    lv.disk_driver :discard => 'unmap', :cache => 'unsafe'
     config.vm.synced_folder '.', '/vagrant', type: 'nfs', nfs_version: '4.2', nfs_udp: false
   end
 
@@ -101,6 +104,7 @@ Vagrant.configure('2') do |config|
     config.vm.provider :libvirt do |lv|
       lv.cpus = 4
       lv.memory = 4*1024
+      lv.machine_virtual_size = 16
     end
     config.vm.hostname = CONFIG_PANDORA_FQDN
     if CONFIG_PANDORA_BRIDGE_NAME
