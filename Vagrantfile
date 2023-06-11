@@ -67,7 +67,7 @@ CONFIG_TRAEFIK_CHART_VERSION = '23.1.0'
 # kubernetes-dashboard.
 # see https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
 # renovate: datasource=helm depName=kubernetes-dashboard registryUrl=https://kubernetes.github.io/dashboard
-CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION = '6.0.7'
+CONFIG_KUBERNETES_DASHBOARD_CHART_VERSION = '6.0.8'
 
 CONFIG_PANDORA_BRIDGE_NAME = nil
 CONFIG_PANDORA_HOST_IP = '10.10.0.1'
