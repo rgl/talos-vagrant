@@ -41,7 +41,7 @@ CONFIG_K9S_VERSION = 'v0.27.4'
 # vector.
 # see https://artifacthub.io/packages/helm/vector/vector
 # renovate: datasource=helm depName=vector registryUrl=https://helm.vector.dev
-CONFIG_VECTOR_CHART_VERSION = '0.21.1'
+CONFIG_VECTOR_CHART_VERSION = '0.22.0'
 
 # metallb.
 # see https://artifacthub.io/packages/helm/metallb/metallb
