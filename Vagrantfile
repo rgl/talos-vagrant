@@ -36,7 +36,7 @@ CONFIG_HELM_VERSION = 'v3.12.0'
 # k9s.
 # see https://github.com/derailed/k9s/releases
 # renovate: datasource=github-releases depName=derailed/k9s
-CONFIG_K9S_VERSION = 'v0.27.3'
+CONFIG_K9S_VERSION = 'v0.27.4'
 
 # vector.
 # see https://artifacthub.io/packages/helm/vector/vector
