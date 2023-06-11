@@ -1,7 +1,7 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
-etcd_version="${1:-3.5.8}"; shift || true
+etcd_version="${1:-3.5.9}"; shift || true
 
 # install the binaries.
 url="https://github.com/etcd-io/etcd/releases/download/v$etcd_version/etcd-v$etcd_version-linux-amd64.tar.gz"

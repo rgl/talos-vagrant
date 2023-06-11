@@ -19,7 +19,7 @@ EOF
 RUN <<'EOF'
 set -eux
 # renovate: datasource=github-releases depName=etcd-io/etcd
-etcd_version='3.5.8'
+etcd_version='3.5.9'
 # install the binaries.
 url="https://github.com/etcd-io/etcd/releases/download/v$etcd_version/etcd-v$etcd_version-linux-amd64.tar.gz"
 filename="$(basename "$url")"

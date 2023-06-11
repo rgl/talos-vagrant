@@ -21,7 +21,7 @@ CONFIG_KUBECTL_VERSION = CONFIG_KUBERNETES_VERSION
 # etcdctl.
 # see https://github.com/etcd-io/etcd/releases
 # renovate: datasource=github-releases depName=etcd-io/etcd
-CONFIG_ETCDCTL_VERSION = '3.5.8'
+CONFIG_ETCDCTL_VERSION = '3.5.9'
 
 # theila.
 # see https://github.com/siderolabs/theila/releases
