@@ -7,14 +7,14 @@ CONFIG_PANDORA_FQDN = "pandora.#{CONFIG_DNS_DOMAIN}"
 # see https://github.com/siderolabs/talos/releases
 # see https://www.talos.dev/v1.4/introduction/support-matrix/
 # renovate: datasource=github-releases depName=siderolabs/talos
-CONFIG_TALOS_VERSION = '1.4.0'
+CONFIG_TALOS_VERSION = '1.4.5'
 
 # k8s.
 # see https://github.com/siderolabs/kubelet/releases
 # see https://kubernetes.io/releases/
 # see https://www.talos.dev/v1.4/introduction/support-matrix/
 # renovate: datasource=github-releases depName=siderolabs/kubelet
-CONFIG_KUBERNETES_VERSION = '1.26.4'
+CONFIG_KUBERNETES_VERSION = '1.26.5'
 # see https://kubernetes.io/releases/
 CONFIG_KUBECTL_VERSION = CONFIG_KUBERNETES_VERSION
 
