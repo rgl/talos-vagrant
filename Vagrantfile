@@ -31,7 +31,7 @@ CONFIG_THEILA_VERSION = '0.2.1'
 # helm.
 # see https://github.com/helm/helm/releases
 # renovate: datasource=github-releases depName=helm/helm
-CONFIG_HELM_VERSION = 'v3.11.3'
+CONFIG_HELM_VERSION = 'v3.12.0'
 
 # k9s.
 # see https://github.com/derailed/k9s/releases

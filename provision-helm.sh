@@ -5,7 +5,7 @@ source /vagrant/lib.sh
 # deploy helm.
 
 # see https://github.com/helm/helm/releases
-helm_version="${1:-v3.11.3}"; shift || true
+helm_version="${1:-v3.12.0}"; shift || true
 
 # install helm.
 # see https://helm.sh/docs/intro/install/
